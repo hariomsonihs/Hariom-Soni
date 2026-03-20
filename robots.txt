@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /web-admin/
+
+Sitemap: https://hariomsonihs.github.io/sitemap.xml
