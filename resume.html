@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Resume | Hariom Kumar</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <img src="profile-photo.jpeg" alt="Profile" class="drawer-avatar" />
+      <h3>Hariom Kumar</h3>
+      <p>Android &amp; Web Developer</p>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="activities.html"><i class="fa-solid fa-bolt"></i> Activities</a>
+      <a href="projects.html"><i class="fa-solid fa-code"></i> Projects</a>
+      <a href="services.html"><i class="fa-solid fa-briefcase"></i> Services</a>
+      <a href="resume.html" class="active"><i class="fa-solid fa-file-lines"></i> Resume</a>
+    </nav>
+    <div class="drawer-socials">
+      <a href="https://github.com/hariomsonihs" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com/in/hariomsonihs" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+    <div class="drawer-hire">
+      <a href="services.html#contact" class="btn-primary" style="display:block;text-align:center;"><i class="fa-solid fa-handshake"></i> Hire Me</a>
+    </div>
+  </aside>
+
+  <header class="navbar" id="navbar">
+    <div class="nav-logo">HK<span>.</span></div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="activities.html" class="nav-link">Activities</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="resume.html" class="nav-link active">Resume</a>
+    </nav>
+    <a href="services.html#contact" class="btn-hire">Hire Me</a>
+    <button class="hamburger" onclick="openDrawer()"><i class="fa-solid fa-bars"></i></button>
+  </header>
+
+  <main>
+    <section class="section">
+
+      <!-- RESUME HEADER -->
+      <div class="resume-topbar reveal">
+        <div>
+          <h2>My <span class="gradient-text">Resume</span></h2>
+          <p style="color:var(--muted);font-size:0.9rem;margin-top:4px">Full overview of my education, experience &amp; skills</p>
+        </div>
+        <div class="resume-actions">
+          <a href="#" id="firebase-res-pdf-view" target="_blank" class="btn-outline resume-btn hidden"><i class="fa-solid fa-eye"></i> View PDF</a>
+          <a href="#" id="firebase-res-pdf-download" download class="btn-primary resume-btn hidden"><i class="fa-solid fa-download"></i> Download PDF</a>
+        </div>
+      </div>
+
+      <!-- RESUME CARD -->
+      <div class="resume-card reveal">
+
+        <!-- NAME & CONTACT -->
+        <div class="res-header">
+          <img src="profile-photo.jpeg" alt="Hariom Kumar" class="res-profile-photo" />
+          <h1>HARIOM KUMAR</h1>
+          <p class="res-title">Android &amp; Web Developer</p>
+          <div class="res-contact">
+            <span><i class="fa-solid fa-phone"></i> 7667110195</span>
+            <span><i class="fa-solid fa-envelope"></i> hariomsoni0818@gmail.com</span>
+            <a href="https://linkedin.com/in/hariomsonihs" target="_blank"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/hariomsonihs</a>
+            <a href="https://github.com/hariomsonihs" target="_blank"><i class="fa-brands fa-github"></i> github.com/hariomsonihs</a>
+            <span><i class="fa-solid fa-location-dot"></i> West Champaran, Bihar, India</span>
+          </div>
+        </div>
+
+        <div class="res-divider"></div>
+
+        <!-- SUMMARY -->
+        <div class="res-section">
+          <h3 class="res-section-title"><i class="fa-solid fa-user"></i> Summary</h3>
+          <p class="res-text" id="firebase-res-summary">Computer Science and Engineering undergraduate with hands-on experience in Android and web development. Proficient in Java, XML, Firebase, and modern application technologies.</p>
+        </div>
+
+        <div class="res-divider"></div>
+
+        <!-- TECHNICAL SKILLS -->
+        <div class="res-section">
+          <h3 class="res-section-title"><i class="fa-solid fa-code"></i> Technical Skills</h3>
+          <div class="res-skills-grid">
+            <div class="res-skill-row"><strong>Programming Languages</strong><span>Java, C</span></div>
+            <div class="res-skill-row"><strong>Mobile Development</strong><span>Android Development, Flutter, Android Studio, XML, JSON</span></div>
+            <div class="res-skill-row"><strong>Web Development</strong><span>HTML, CSS, JavaScript, React, Responsive Design</span></div>
+            <div class="res-skill-row"><strong>Backend &amp; Databases</strong><span>Firebase Realtime Database, SQL, Node.js, REST APIs</span></div>
+            <div class="res-skill-row"><strong>Tools</strong><span>Git, GitHub, VS Code, Android Studio</span></div>
+          </div>
+        </div>
+
+        <div class="res-divider"></div>
+
+        <!-- PROJECTS -->
+        <div class="res-section">
+          <h3 class="res-section-title"><i class="fa-solid fa-diagram-project"></i> Projects</h3>
+
+          <div class="res-project">
+            <div class="res-project-title">NotesAura – Programming Guide <span class="res-tag">Android App</span></div>
+            <ul class="res-bullets">
+              <li>Built an Android learning platform featuring 100+ programming tutorials, structured notes, quizzes, and smart search functionality.</li>
+              <li>Integrated secure payment gateway and supporting web platform, improving accessibility for 500+ learners.</li>
+            </ul>
+          </div>
+
+          <div class="res-project">
+            <div class="res-project-title">Vocab Doctor – Dictionary Learning App <span class="res-tag">Android App</span></div>
+            <ul class="res-bullets">
+              <li>Created an Android vocabulary learning application with offline access, smart search, and daily word updates.</li>
+              <li>Implemented Firebase backend enabling real-time synchronization and improved data reliability.</li>
+            </ul>
+          </div>
+
+          <div class="res-project">
+            <div class="res-project-title">Elite Computer Classes – Learning App <span class="res-tag">Android App</span></div>
+            <ul class="res-bullets">
+              <li>Designed an Android learning platform delivering courses, PDFs, offline study resources, and search functionality.</li>
+              <li>Integrated Firebase-based real-time updates improving content accessibility for students.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="res-divider"></div>
+
+        <!-- EXPERIENCE -->
+        <div class="res-section">
+          <h3 class="res-section-title"><i class="fa-solid fa-briefcase"></i> Experience</h3>
+
+          <div class="res-exp-item">
+            <div class="res-exp-header">
+              <div><strong>Web Development Intern</strong> — Infotact Solutions</div>
+              <span class="res-date">May 2025 – Jul 2025</span>
+            </div>
+            <ul class="res-bullets">
+              <li>Developed a responsive web application using React, Express and MongoDB — Foodela, improving frontend performance and user interaction.</li>
+            </ul>
+          </div>
+
+          <div class="res-exp-item">
+            <div class="res-exp-header">
+              <div><strong>Frontend Development Intern</strong> — CodeAlpha</div>
+              <span class="res-date">May 2025</span>
+            </div>
+            <ul class="res-bullets">
+              <li>Created responsive web pages using HTML, CSS, and JavaScript improving cross-device compatibility.</li>
+            </ul>
+          </div>
+
+          <div class="res-exp-item">
+            <div class="res-exp-header">
+              <div><strong>Computer Teacher</strong> — Elite Computer Classes</div>
+              <span class="res-date">Apr 2021 – Jan 2023</span>
+            </div>
+            <ul class="res-bullets">
+              <li>Taught Advance Diploma in Computer Applications (ADCA) and programming fundamentals to 100+ students.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="res-divider"></div>
+
+        <!-- EDUCATION -->
+        <div class="res-section">
+          <h3 class="res-section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+          <div class="res-edu-grid">
+            <div class="res-edu-item">
+              <div class="res-edu-degree">B.Tech in Computer Science &amp; Engineering</div>
+              <div class="res-edu-inst">Centurion University of Technology and Management</div>
+              <span class="res-date">2023 – 2027</span>
+            </div>
+            <div class="res-edu-item">
+              <div class="res-edu-degree">Intermediate of Science</div>
+              <div class="res-edu-inst">Tarkeshwar Prasad Verma College</div>
+              <span class="res-date">2021 – 2023</span>
+            </div>
+            <div class="res-edu-item">
+              <div class="res-edu-degree">Matriculation</div>
+              <div class="res-edu-inst">+2 High School Narkatiaganj</div>
+              <span class="res-date">2021</span>
+            </div>
+            <div class="res-edu-item">
+              <div class="res-edu-degree">ADCA – Advanced Diploma in Computer Applications</div>
+              <div class="res-edu-inst">Elite Computer Classes</div>
+              <span class="res-date">2021 – 2022</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="res-divider"></div>
+
+        <!-- CERTIFICATIONS -->
+        <div class="res-section">
+          <h3 class="res-section-title"><i class="fa-solid fa-certificate"></i> Certifications</h3>
+          <ul class="res-cert-list">
+            <li><i class="fa-solid fa-check-circle"></i> Android Mobile Application Development — SWAYAM (MHRD)</li>
+            <li><i class="fa-solid fa-check-circle"></i> Android Development with Kotlin</li>
+            <li><i class="fa-solid fa-check-circle"></i> HTML &amp; CSS Training — HCL GUVI</li>
+            <li><i class="fa-solid fa-check-circle"></i> GeeksforGeeks CUTM Training Program</li>
+          </ul>
+        </div>
+
+        <div class="res-divider"></div>
+
+        <!-- SOFT SKILLS & LANGUAGES -->
+        <div class="res-bottom-grid">
+          <div class="res-section">
+            <h3 class="res-section-title"><i class="fa-solid fa-brain"></i> Soft Skills</h3>
+            <div class="soft-skills">
+              <span><i class="fa-solid fa-lightbulb"></i> Problem Solving</span>
+              <span><i class="fa-solid fa-users"></i> Team Collaboration</span>
+              <span><i class="fa-solid fa-comments"></i> Communication</span>
+              <span><i class="fa-solid fa-arrows-rotate"></i> Adaptability</span>
+            </div>
+          </div>
+          <div class="res-section">
+            <h3 class="res-section-title"><i class="fa-solid fa-language"></i> Languages</h3>
+            <ul class="lang-list">
+              <li>
+                <div class="lang-info"><span>English</span><span class="lang-level">Professional</span></div>
+                <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+              </li>
+              <li>
+                <div class="lang-info"><span>Hindi</span><span class="lang-level">Native</span></div>
+                <div class="skill-bar"><div class="skill-fill" data-width="100"></div></div>
+              </li>
+              <li>
+                <div class="lang-info"><span>Bhojpuri</span><span class="lang-level">Native</span></div>
+                <div class="skill-bar"><div class="skill-fill" data-width="100"></div></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      <!-- END RESUME CARD -->
+
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Designed &amp; Built with <i class="fa-solid fa-heart" style="color:#f5576c"></i> by <span class="gradient-text">Hariom Kumar</span></p>
+    <p class="footer-copy">© 2024 All Rights Reserved</p>
+  </footer>
+
+  <nav class="bottom-nav" id="bottomNav">
+    <a href="index.html" class="bn-item"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a href="activities.html" class="bn-item"><i class="fa-solid fa-bolt"></i><span>Activities</span></a>
+    <a href="projects.html" class="bn-item"><i class="fa-solid fa-code"></i><span>Projects</span></a>
+    <a href="services.html" class="bn-item"><i class="fa-solid fa-briefcase"></i><span>Services</span></a>
+    <a href="resume.html" class="bn-item active"><i class="fa-solid fa-file-lines"></i><span>Resume</span></a>
+  </nav>
+
+  <script src="script.js"></script>
+  <script type="module" src="firebase-data.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Projects | Hariom Kumar</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <img src="profile-photo.jpeg" alt="Profile" class="drawer-avatar" />
+      <h3>Hariom Kumar</h3>
+      <p>Android &amp; Web Developer</p>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="activities.html"><i class="fa-solid fa-bolt"></i> Activities</a>
+      <a href="projects.html" class="active"><i class="fa-solid fa-code"></i> Projects</a>
+      <a href="services.html"><i class="fa-solid fa-briefcase"></i> Services</a>
+      <a href="resume.html"><i class="fa-solid fa-file-lines"></i> Resume</a>
+    </nav>
+    <div class="drawer-socials">
+      <a href="https://github.com/hariomsonihs" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com/in/hariomsonihs" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+    <div class="drawer-hire">
+      <a href="services.html#contact" class="btn-primary" style="display:block;text-align:center;"><i class="fa-solid fa-handshake"></i> Hire Me</a>
+    </div>
+  </aside>
+
+  <header class="navbar" id="navbar">
+    <div class="nav-logo">HK<span>.</span></div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="activities.html" class="nav-link">Activities</a>
+      <a href="projects.html" class="nav-link active">Projects</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="resume.html" class="nav-link">Resume</a>
+    </nav>
+    <a href="services.html#contact" class="btn-hire">Hire Me</a>
+    <button class="hamburger" onclick="openDrawer()"><i class="fa-solid fa-bars"></i></button>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="section-title">
+        <h2>My <span class="gradient-text">Projects</span></h2>
+        <p>Things I've built with passion</p>
+      </div>
+
+      <!-- TABS (shown/hidden dynamically by firebase-data.js) -->
+      <div class="act-tabs" id="proj-tabs"></div>
+
+      <!-- TAB: PERSONAL -->
+      <div class="act-tab-panel" id="tab-personal">
+        <div class="projects-grid" id="firebase-personal-projects">
+          <div class="proj-skeleton-grid">
+            <div class="proj-skeleton"></div>
+            <div class="proj-skeleton"></div>
+            <div class="proj-skeleton"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: CLIENT -->
+      <div class="act-tab-panel" id="tab-client">
+        <div class="projects-grid" id="firebase-client-projects">
+          <div class="proj-skeleton-grid">
+            <div class="proj-skeleton"></div>
+            <div class="proj-skeleton"></div>
+            <div class="proj-skeleton"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: COLLEGE -->
+      <div class="act-tab-panel" id="tab-college">
+        <div class="projects-grid" id="firebase-college-projects">
+          <div class="proj-skeleton-grid">
+            <div class="proj-skeleton"></div>
+            <div class="proj-skeleton"></div>
+            <div class="proj-skeleton"></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- PROJECT DETAIL MODAL -->
+  <div class="proj-modal-overlay" id="projModalOverlay" onclick="closeProjectModal(event)">
+    <div class="proj-modal" id="projModal">
+      <div class="proj-modal-banner" id="projModalBanner">
+        <button class="proj-modal-close" onclick="closeProjectModal()"><i class="fa-solid fa-xmark"></i></button>
+        <i id="projModalIcon"></i>
+      </div>
+      <div class="proj-modal-body">
+        <div class="proj-modal-tags" id="projModalTags"></div>
+        <h2 id="projModalTitle"></h2>
+        <p class="proj-desc" id="projModalDesc"></p>
+        <div id="projModalFeaturesWrap">
+          <div class="proj-features-title">Key Features</div>
+          <ul class="proj-features" id="projModalFeatures"></ul>
+        </div>
+        <div class="proj-modal-links" id="projModalLinks"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Designed &amp; Built with <i class="fa-solid fa-heart" style="color:#f5576c"></i> by <span class="gradient-text">Hariom Kumar</span></p>
+    <p class="footer-copy">© 2024 All Rights Reserved</p>
+  </footer>
+
+  <nav class="bottom-nav" id="bottomNav">
+    <a href="index.html" class="bn-item"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a href="activities.html" class="bn-item"><i class="fa-solid fa-bolt"></i><span>Activities</span></a>
+    <a href="projects.html" class="bn-item active"><i class="fa-solid fa-code"></i><span>Projects</span></a>
+    <a href="services.html" class="bn-item"><i class="fa-solid fa-briefcase"></i><span>Services</span></a>
+    <a href="resume.html" class="bn-item"><i class="fa-solid fa-file-lines"></i><span>Resume</span></a>
+  </nav>
+
+  <script src="script.js"></script>
+  <script type="module" src="firebase-data.js"></script>
+</body>
+</html>

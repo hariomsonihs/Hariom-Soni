@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Services | Hariom Kumar</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <img src="profile-photo.jpeg" alt="Profile" class="drawer-avatar" />
+      <h3>Hariom Kumar</h3>
+      <p>Android &amp; Web Developer</p>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="activities.html"><i class="fa-solid fa-bolt"></i> Activities</a>
+      <a href="projects.html"><i class="fa-solid fa-code"></i> Projects</a>
+      <a href="services.html" class="active"><i class="fa-solid fa-briefcase"></i> Services</a>
+      <a href="resume.html"><i class="fa-solid fa-file-lines"></i> Resume</a>
+    </nav>
+    <div class="drawer-socials">
+      <a href="https://github.com/hariomsonihs" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com/in/hariomsonihs" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+    <div class="drawer-hire">
+      <a href="#contact" class="btn-primary" style="display:block;text-align:center;"><i class="fa-solid fa-handshake"></i> Hire Me</a>
+    </div>
+  </aside>
+
+  <header class="navbar" id="navbar">
+    <div class="nav-logo">HK<span>.</span></div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="activities.html" class="nav-link">Activities</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="services.html" class="nav-link active">Services</a>
+      <a href="resume.html" class="nav-link">Resume</a>
+    </nav>
+    <a href="#contact" class="btn-hire">Hire Me</a>
+    <button class="hamburger" onclick="openDrawer()"><i class="fa-solid fa-bars"></i></button>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="section-title">
+        <h2>My <span class="gradient-text">Services</span></h2>
+        <p>What I can do for you</p>
+      </div>
+      <div class="services-grid" id="firebase-services">
+
+        <div class="service-card reveal">
+          <div class="svc-icon"><i class="fa-brands fa-android"></i></div>
+          <h4>Android Development</h4>
+          <p>Native Android apps built with Java/XML and Firebase. Offline access, smart search, and scalable architecture.</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Java &amp; XML</li>
+            <li><i class="fa-solid fa-check"></i> Firebase Integration</li>
+            <li><i class="fa-solid fa-check"></i> Offline Support</li>
+          </ul>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+            <div class="svc-price">Starting at ₹5,000</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <a href="#" class="card-view-btn" onclick="openCardModal({icon:'fa-brands fa-android',title:'Android Development',desc:'Native Android apps built with Java/XML and Firebase. Offline access, smart search, and scalable architecture for a great user experience.',meta:'Starting at ₹5,000'});return false;"><i class="fa-solid fa-eye"></i> View</a>
+              <a href="#" class="card-view-btn svc-get-btn" onclick="openServiceInquiry('Android Development');return false;"><i class="fa-solid fa-handshake"></i> Get This</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card featured reveal">
+          <div class="featured-badge">Most Popular</div>
+          <div class="svc-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <h4>Full Stack Web Development</h4>
+          <p>End-to-end web application development using React, Node.js, and MongoDB from UI to deployment.</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> React Frontend</li>
+            <li><i class="fa-solid fa-check"></i> Node.js / Express Backend</li>
+            <li><i class="fa-solid fa-check"></i> MongoDB / Firebase DB</li>
+          </ul>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+            <div class="svc-price">Starting at ₹10,000</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <a href="#" class="card-view-btn" onclick="openCardModal({icon:'fa-solid fa-laptop-code',title:'Full Stack Web Development',desc:'End-to-end web application development using React, Node.js, and MongoDB from UI to deployment.',meta:'Starting at ₹10,000'});return false;"><i class="fa-solid fa-eye"></i> View</a>
+              <a href="#" class="card-view-btn svc-get-btn" onclick="openServiceInquiry('Full Stack Web Development');return false;"><i class="fa-solid fa-handshake"></i> Get This</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="svc-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+          <h4>Flutter App Development</h4>
+          <p>Cross-platform mobile apps for Android and iOS using Flutter with clean UI and smooth performance.</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Android &amp; iOS</li>
+            <li><i class="fa-solid fa-check"></i> Clean UI Design</li>
+            <li><i class="fa-solid fa-check"></i> REST API Integration</li>
+          </ul>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+            <div class="svc-price">Starting at ₹8,000</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <a href="#" class="card-view-btn" onclick="openCardModal({icon:'fa-solid fa-mobile-screen',title:'Flutter App Development',desc:'Cross-platform mobile apps for Android and iOS using Flutter with clean UI and smooth performance.',meta:'Starting at ₹8,000'});return false;"><i class="fa-solid fa-eye"></i> View</a>
+              <a href="#" class="card-view-btn svc-get-btn" onclick="openServiceInquiry('Flutter App Development');return false;"><i class="fa-solid fa-handshake"></i> Get This</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="svc-icon"><i class="fa-solid fa-palette"></i></div>
+          <h4>Responsive Web Design</h4>
+          <p>Beautiful, mobile-first responsive websites using HTML, CSS, and JavaScript with cross-device compatibility.</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> HTML / CSS / JS</li>
+            <li><i class="fa-solid fa-check"></i> Mobile Responsive</li>
+            <li><i class="fa-solid fa-check"></i> Cross-browser Support</li>
+          </ul>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+            <div class="svc-price">Starting at ₹3,000</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <a href="#" class="card-view-btn" onclick="openCardModal({icon:'fa-solid fa-palette',title:'Responsive Web Design',desc:'Beautiful, mobile-first responsive websites using HTML, CSS, and JavaScript with cross-device compatibility.',meta:'Starting at ₹3,000'});return false;"><i class="fa-solid fa-eye"></i> View</a>
+              <a href="#" class="card-view-btn svc-get-btn" onclick="openServiceInquiry('Responsive Web Design');return false;"><i class="fa-solid fa-handshake"></i> Get This</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="svc-icon"><i class="fa-solid fa-database"></i></div>
+          <h4>Firebase &amp; Backend Setup</h4>
+          <p>Firebase Realtime Database, authentication, cloud storage setup and REST API integration for your apps.</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Firebase Auth &amp; DB</li>
+            <li><i class="fa-solid fa-check"></i> REST APIs</li>
+            <li><i class="fa-solid fa-check"></i> SQL / Node.js Backend</li>
+          </ul>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+            <div class="svc-price">Starting at ₹4,000</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <a href="#" class="card-view-btn" onclick="openCardModal({icon:'fa-solid fa-database',title:'Firebase &amp; Backend Setup',desc:'Firebase Realtime Database, authentication, cloud storage setup and REST API integration for your apps.',meta:'Starting at ₹4,000'});return false;"><i class="fa-solid fa-eye"></i> View</a>
+              <a href="#" class="card-view-btn svc-get-btn" onclick="openServiceInquiry('Firebase & Backend Setup');return false;"><i class="fa-solid fa-handshake"></i> Get This</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="svc-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+          <h4>Programming Tutoring</h4>
+          <p>One-on-one or group tutoring in Java, Android development, web development, and computer fundamentals.</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Java &amp; C Basics</li>
+            <li><i class="fa-solid fa-check"></i> Android &amp; Web Dev</li>
+            <li><i class="fa-solid fa-check"></i> Flexible Scheduling</li>
+          </ul>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+            <div class="svc-price">Starting at ₹500/hr</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <a href="#" class="card-view-btn" onclick="openCardModal({icon:'fa-solid fa-chalkboard-user',title:'Programming Tutoring',desc:'One-on-one or group tutoring in Java, Android development, web development, and computer fundamentals.',meta:'Starting at ₹500/hr'});return false;"><i class="fa-solid fa-eye"></i> View</a>
+              <a href="#" class="card-view-btn svc-get-btn" onclick="openServiceInquiry('Programming Tutoring');return false;"><i class="fa-solid fa-handshake"></i> Get This</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CONTACT -->
+      <div id="contact" class="contact-section reveal">
+        <div class="section-title"><h2>Get In <span class="gradient-text">Touch</span></h2><p>Let's work together</p></div>
+        <div class="contact-wrap">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <div><strong>Email</strong><span>hariom@example.com</span></div>
+            </div>
+            <div class="contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <div><strong>Phone</strong><span>+91 76671 10195</span></div>
+            </div>
+            <div class="contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <div><strong>Location</strong><span>West Champaran, Bihar, India</span></div>
+            </div>
+            <div class="contact-socials">
+              <a href="https://github.com/hariomsonihs" target="_blank"><i class="fa-brands fa-github"></i></a>
+              <a href="https://linkedin.com/in/hariomsonihs" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+          </div>
+          <form class="contact-form" onsubmit="handleSubmit(event)">
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <input type="tel" placeholder="Your Phone Number" />
+            <input type="text" placeholder="Subject" />
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit" class="btn-primary">Send via WhatsApp <i class="fa-brands fa-whatsapp"></i></button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SERVICE INQUIRY MODAL -->
+  <div class="proj-modal-overlay" id="serviceInquiryOverlay" onclick="closeServiceInquiry(event)">
+    <div class="proj-modal" style="max-width:500px">
+      <div class="proj-modal-banner" style="background:var(--grad);height:100px">
+        <button class="proj-modal-close" onclick="closeServiceInquiry()"><i class="fa-solid fa-xmark"></i></button>
+        <i class="fa-solid fa-handshake" style="font-size:2.2rem"></i>
+      </div>
+      <div class="proj-modal-body">
+        <p style="font-size:0.78rem;color:var(--primary);font-weight:600;background:rgba(102,126,234,0.1);padding:3px 12px;border-radius:50px;display:inline-block;margin-bottom:12px;">Get In Touch</p>
+        <h2 style="font-size:1.1rem;margin-bottom:4px;">Interested in</h2>
+        <p id="siq-service-name" style="font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:20px;"></p>
+        <form id="serviceInquiryForm" onsubmit="submitServiceInquiry(event)" style="display:flex;flex-direction:column;gap:12px;">
+          <input type="text"  id="siq-name"    placeholder="Your Name *" required style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 16px;color:var(--text);font-family:'Poppins',sans-serif;font-size:0.88rem;outline:none;" />
+          <input type="email" id="siq-email"   placeholder="Your Email *" required style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 16px;color:var(--text);font-family:'Poppins',sans-serif;font-size:0.88rem;outline:none;" />
+          <input type="tel"   id="siq-phone"   placeholder="Your Phone Number" style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 16px;color:var(--text);font-family:'Poppins',sans-serif;font-size:0.88rem;outline:none;" />
+          <textarea           id="siq-message" placeholder="Tell me about your project / requirements..." rows="4" required style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 16px;color:var(--text);font-family:'Poppins',sans-serif;font-size:0.88rem;outline:none;resize:vertical;"></textarea>
+          <button type="submit" class="btn-primary" style="display:flex;align-items:center;justify-content:center;gap:8px;" id="siq-submit">
+            <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD DETAIL MODAL -->
+  <div class="proj-modal-overlay" id="cardModalOverlay" onclick="closeCardModal(event)">
+    <div class="proj-modal">
+      <div class="proj-modal-banner" id="cardModalBanner" style="background:var(--grad)">
+        <button class="proj-modal-close" onclick="closeCardModal()"><i class="fa-solid fa-xmark"></i></button>
+        <i id="cardModalIcon"></i>
+      </div>
+      <div class="proj-modal-body">
+        <div id="cardModalMeta"></div>
+        <h2 id="cardModalTitle"></h2>
+        <p class="proj-desc" id="cardModalDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Designed &amp; Built with <i class="fa-solid fa-heart" style="color:#f5576c"></i> by <span class="gradient-text">Hariom Kumar</span></p>
+    <p class="footer-copy">&copy; 2024 All Rights Reserved</p>
+  </footer>
+
+  <nav class="bottom-nav" id="bottomNav">
+    <a href="index.html" class="bn-item"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a href="activities.html" class="bn-item"><i class="fa-solid fa-bolt"></i><span>Activities</span></a>
+    <a href="projects.html" class="bn-item"><i class="fa-solid fa-code"></i><span>Projects</span></a>
+    <a href="services.html" class="bn-item active"><i class="fa-solid fa-briefcase"></i><span>Services</span></a>
+    <a href="resume.html" class="bn-item"><i class="fa-solid fa-file-lines"></i><span>Resume</span></a>
+  </nav>
+
+  <script src="script.js"></script>
+  <script type="module" src="firebase-data.js"></script>
+</body>
+</html>

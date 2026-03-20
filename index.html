@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Hariom Kumar | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+
+  <!-- SIDEBAR DRAWER (Mobile) -->
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <img src="profile-photo.jpeg" alt="Profile" class="drawer-avatar" />
+      <h3>Hariom Kumar</h3>
+      <p>Android &amp; Web Developer</p>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html" class="active"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="activities.html"><i class="fa-solid fa-bolt"></i> Activities</a>
+      <a href="projects.html"><i class="fa-solid fa-code"></i> Projects</a>
+      <a href="services.html"><i class="fa-solid fa-briefcase"></i> Services</a>
+      <a href="resume.html"><i class="fa-solid fa-file-lines"></i> Resume</a>
+      <div class="drawer-divider"></div>
+      <a href="https://play.google.com/store/apps/details?id=com.hariomsonihs.notesaura" target="_blank" class="drawer-app-link"><i class="fa-brands fa-google-play"></i> NotesAura App</a>
+    </nav>
+    <div class="drawer-socials">
+      <a href="https://github.com/hariomsonihs" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com/in/hariomsonihs" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+    <div class="drawer-hire">
+      <a href="services.html#contact" class="btn-primary" style="display:block;text-align:center;"><i class="fa-solid fa-handshake"></i> Hire Me</a>
+    </div>
+  </aside>
+
+  <!-- DESKTOP NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-logo">HK<span>.</span></div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="activities.html" class="nav-link">Activities</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="resume.html" class="nav-link">Resume</a>
+    </nav>
+    <a href="services.html#contact" class="btn-hire">Hire Me</a>
+    <button class="hamburger" onclick="openDrawer()"><i class="fa-solid fa-bars"></i></button>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- HOME SECTION -->
+    <section id="home" class="section">
+      <div class="hero">
+        <div class="hero-text">
+          <span class="badge">&#x26A1; Building Ideas Into Reality</span>
+          <h1>Hi, I'm <span class="gradient-text">Hariom Kumar</span></h1>
+          <div class="typewriter-wrap">
+            <span class="typewriter" id="typewriter"></span><span class="cursor">|</span>
+          </div>
+          <p class="hero-desc">Computer Science and Engineering undergraduate with hands-on experience in Android and web development. Proficient in Java, XML, Firebase, and modern web technologies.</p>
+          <div class="hero-btns">
+            <a href="projects.html" class="btn-primary">View Projects</a>
+            <a href="services.html#contact" class="btn-outline">Contact Me</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><h3>2+</h3><p>Years Exp.</p></div>
+            <div class="stat"><h3>10+</h3><p>Projects</p></div>
+            <div class="stat"><h3>100+</h3><p>Students</p></div>
+          </div>
+        </div>
+        <div class="hero-img-wrap">
+          <div class="hero-img-ring">
+            <img src="profile-photo.jpeg" alt="Hariom Kumar" class="hero-img" />
+          </div>
+          <div class="floating-badge fb1"><i class="fa-brands fa-java"></i> Java</div>
+          <div class="floating-badge fb2"><i class="fa-brands fa-android"></i> Android</div>
+          <div class="floating-badge fb3"><i class="fa-brands fa-react"></i> React</div>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="about-card reveal">
+        <div class="about-left">
+          <h2>About <span class="gradient-text">Me</span></h2>
+          <p>Computer Science and Engineering undergraduate passionate about Android and web development. I build scalable, user-friendly digital solutions with clean architecture.</p>
+          <div class="info-grid">
+            <div class="info-item"><i class="fa-solid fa-location-dot"></i><div><strong>Location</strong><span>West Champaran, Bihar</span></div></div>
+            <div class="info-item"><i class="fa-solid fa-envelope"></i><div><strong>Email</strong><span>hariom@example.com</span></div></div>
+            <div class="info-item"><i class="fa-solid fa-phone"></i><div><strong>Phone</strong><span>+91 76671 10195</span></div></div>
+          </div>
+          <div class="edu-list">
+            <div class="edu-item"><i class="fa-solid fa-graduation-cap"></i><div><strong>B.Tech CSE</strong><span>Centurion University of Technology &amp; Management — 2023–2027</span></div></div>
+            <div class="edu-item"><i class="fa-solid fa-school"></i><div><strong>Intermediate of Science</strong><span>Tarkeshwar Prasad Verma College — 2021–2023</span></div></div>
+            <div class="edu-item"><i class="fa-solid fa-school-flag"></i><div><strong>Matriculation</strong><span>+2 High School Narkatiaganj — 2021</span></div></div>
+            <div class="edu-item"><i class="fa-solid fa-computer"></i><div><strong>ADCA</strong><span>Elite Computer Classes — 2021–2022</span></div></div>
+          </div>
+        </div>
+        <div class="about-right">
+          <h3>Skills</h3>
+          <div class="skills">
+            <div class="skill-item">
+              <div class="skill-info"><span>Java / Android</span><span>85%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>HTML / CSS</span><span>90%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>JavaScript / React</span><span>80%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>Firebase / SQL</span><span>78%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>Flutter</span><span>65%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="section-title reveal"><h2>Work <span class="gradient-text">Experience</span></h2></div>
+      <div class="timeline reveal" id="firebase-experience">
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <span class="tl-date">May 2025 – Jul 2025</span>
+            <h4>Web Development Intern</h4>
+            <p>Infotact Solutions</p>
+            <small>Developed Foodela — a responsive web app using React, Express and MongoDB. Improved frontend performance and user interaction.</small>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <span class="tl-date">May 2025</span>
+            <h4>Frontend Development Intern</h4>
+            <p>CodeAlpha</p>
+            <small>Created responsive web pages using HTML, CSS, and JavaScript improving cross-device compatibility.</small>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <span class="tl-date">Apr 2021 – Jan 2023</span>
+            <h4>Computer Teacher</h4>
+            <p>Elite Computer Classes</p>
+            <small>Taught ADCA and programming fundamentals to 100+ students.</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- TECH STACK -->
+      <div class="section-title reveal"><h2>Tech <span class="gradient-text">Stack</span></h2></div>
+      <div class="tech-grid reveal">
+        <div class="tech-chip"><i class="fa-brands fa-java"></i> Java</div>
+        <div class="tech-chip"><i class="fa-brands fa-android"></i> Android</div>
+        <div class="tech-chip"><i class="fa-solid fa-mobile-screen"></i> Flutter</div>
+        <div class="tech-chip"><i class="fa-brands fa-html5"></i> HTML5</div>
+        <div class="tech-chip"><i class="fa-brands fa-css3-alt"></i> CSS3</div>
+        <div class="tech-chip"><i class="fa-brands fa-js"></i> JavaScript</div>
+        <div class="tech-chip"><i class="fa-brands fa-react"></i> React</div>
+        <div class="tech-chip"><i class="fa-brands fa-node-js"></i> Node.js</div>
+        <div class="tech-chip"><i class="fa-solid fa-database"></i> Firebase</div>
+        <div class="tech-chip"><i class="fa-brands fa-git-alt"></i> Git</div>
+      </div>
+
+      <!-- CERTIFICATIONS, SOFT SKILLS, LANGUAGES -->
+      <div class="csl-grid reveal">
+
+        <div class="csl-card">
+          <div class="csl-header"><i class="fa-solid fa-certificate"></i><h3>Certifications</h3></div>
+          <ul class="csl-list" id="firebase-certifications">
+            <li><i class="fa-solid fa-spinner fa-spin" style="color:var(--primary)"></i><span>Loading...</span></li>
+          </ul>
+        </div>
+
+        <div class="csl-card">
+          <div class="csl-header"><i class="fa-solid fa-brain"></i><h3>Soft Skills</h3></div>
+          <div class="soft-skills">
+            <span><i class="fa-solid fa-lightbulb"></i> Problem Solving</span>
+            <span><i class="fa-solid fa-users"></i> Team Collaboration</span>
+            <span><i class="fa-solid fa-comments"></i> Communication</span>
+            <span><i class="fa-solid fa-arrows-rotate"></i> Adaptability</span>
+          </div>
+        </div>
+
+        <div class="csl-card">
+          <div class="csl-header"><i class="fa-solid fa-language"></i><h3>Languages</h3></div>
+          <ul class="lang-list">
+            <li>
+              <div class="lang-info"><span>English</span><span class="lang-level">Professional</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+            </li>
+            <li>
+              <div class="lang-info"><span>Hindi</span><span class="lang-level">Native</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="100"></div></div>
+            </li>
+            <li>
+              <div class="lang-info"><span>Bhojpuri</span><span class="lang-level">Native</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="100"></div></div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROJECTS PREVIEW -->
+    <section class="section">
+      <div class="section-title"><h2>My <span class="gradient-text">Projects</span></h2><p>Things I've built with passion</p></div>
+      <div class="projects-grid" id="index-projects-preview">
+        <div class="fb-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading...</div>
+      </div>
+      <div style="text-align:center;margin-top:32px"><a href="projects.html" class="btn-outline">View All Projects <i class="fa-solid fa-arrow-right"></i></a></div>
+    </section>
+
+  </main>
+
+    <!-- NOTESAURA APP SECTION -->
+    <section class="section">
+      <div class="section-title reveal">
+        <h2>My <span class="gradient-text">App</span></h2>
+        <p>A complete learning platform built for students</p>
+      </div>
+
+      <div class="notesaura-wrap reveal">
+
+        <!-- LEFT: Info -->
+        <div class="na-left">
+          <div class="na-badge"><i class="fa-brands fa-android"></i> Live on Play Store</div>
+          <h2 class="na-title">NotesAura</h2>
+          <p class="na-subtitle">Programming Guide &amp; Learning App</p>
+          <p class="na-desc">A complete educational Android app where students can learn Programming, App Development, Web Development, DSA, and much more — with structured notes, eBooks, PDFs, quizzes, and interview preparation all in one place.</p>
+
+          <div class="na-features">
+            <div class="na-feat"><i class="fa-solid fa-book-open"></i><div><strong>eBooks &amp; PDFs</strong><span>Structured study material</span></div></div>
+            <div class="na-feat"><i class="fa-solid fa-circle-question"></i><div><strong>Quizzes</strong><span>Test your knowledge</span></div></div>
+            <div class="na-feat"><i class="fa-solid fa-briefcase"></i><div><strong>Interview Prep</strong><span>Top Q&amp;A for placements</span></div></div>
+            <div class="na-feat"><i class="fa-solid fa-wifi"></i><div><strong>Offline Access</strong><span>Learn without internet</span></div></div>
+            <div class="na-feat"><i class="fa-solid fa-magnifying-glass"></i><div><strong>Smart Search</strong><span>Find topics instantly</span></div></div>
+            <div class="na-feat"><i class="fa-solid fa-layer-group"></i><div><strong>Multi-Course</strong><span>Java, C, Python, Web &amp; more</span></div></div>
+          </div>
+
+          <a href="https://play.google.com/store/apps/details?id=com.hariomsonihs.notesaura" target="_blank" class="na-download-btn">
+            <i class="fa-brands fa-google-play"></i>
+            <div><span>Get it on</span><strong>Google Play</strong></div>
+          </a>
+        </div>
+
+        <!-- RIGHT: Course chips -->
+        <div class="na-right">
+          <div class="na-courses-title">What You Can Learn</div>
+          <div class="na-courses">
+            <div class="na-course"><i class="fa-brands fa-java"></i> Java</div>
+            <div class="na-course"><i class="fa-solid fa-c"></i> C Programming</div>
+            <div class="na-course"><i class="fa-brands fa-python"></i> Python</div>
+            <div class="na-course"><i class="fa-brands fa-android"></i> Android Dev</div>
+            <div class="na-course"><i class="fa-brands fa-html5"></i> Web Development</div>
+            <div class="na-course"><i class="fa-solid fa-diagram-project"></i> DSA</div>
+            <div class="na-course"><i class="fa-solid fa-database"></i> Database / SQL</div>
+            <div class="na-course"><i class="fa-solid fa-mobile-screen-button"></i> App Development</div>
+            <div class="na-course"><i class="fa-solid fa-briefcase"></i> Interview Prep</div>
+            <div class="na-course"><i class="fa-solid fa-circle-question"></i> Quizzes</div>
+            <div class="na-course"><i class="fa-solid fa-book"></i> eBooks &amp; PDFs</div>
+            <div class="na-course"><i class="fa-solid fa-star"></i> &amp; Much More</div>
+          </div>
+
+          <div class="na-stats">
+            <div class="na-stat"><strong>100+</strong><span>Topics</span></div>
+            <div class="na-stat"><strong>500+</strong><span>Learners</span></div>
+            <div class="na-stat"><strong>Free</strong><span>to Use</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+  <footer class="footer">
+    <p>Designed & Built with <i class="fa-solid fa-heart" style="color:#f5576c"></i> by <span class="gradient-text">Hariom Kumar</span></p>
+    <p class="footer-copy">© 2024 All Rights Reserved</p>
+  </footer>
+
+  <!-- BOTTOM NAV (Mobile) -->
+  <nav class="bottom-nav" id="bottomNav">
+    <a href="index.html" class="bn-item active"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a href="activities.html" class="bn-item"><i class="fa-solid fa-bolt"></i><span>Activities</span></a>
+    <a href="projects.html" class="bn-item"><i class="fa-solid fa-code"></i><span>Projects</span></a>
+    <a href="services.html" class="bn-item"><i class="fa-solid fa-briefcase"></i><span>Services</span></a>
+    <a href="resume.html" class="bn-item"><i class="fa-solid fa-file-lines"></i><span>Resume</span></a>
+  </nav>
+
+  <!-- CARD MODAL (for certifications view) -->
+  <div class="proj-modal-overlay" id="cardModalOverlay" onclick="closeCardModal(event)">
+    <div class="proj-modal">
+      <div class="proj-modal-banner" id="cardModalBanner" style="background:var(--grad)">
+        <button class="proj-modal-close" onclick="document.getElementById('cardModalOverlay').classList.remove('active');document.body.style.overflow=''"><i class="fa-solid fa-xmark"></i></button>
+        <i id="cardModalIcon"></i>
+      </div>
+      <div class="proj-modal-body">
+        <div id="cardModalMeta"></div>
+        <h2 id="cardModalTitle"></h2>
+        <p class="proj-desc" id="cardModalDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script type="module" src="firebase-data.js"></script>
+</body>
+</html>
