@@ -1,3 +1,12 @@
+// SCROLL PROGRESS BAR
+const progressBar = document.getElementById('scroll-progress');
+if (progressBar) {
+  window.addEventListener('scroll', () => {
+    const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = scrolled + '%';
+  });
+}
+
 // TYPEWRITER
 const words = ['Android Developer', 'Web Developer', 'Problem Solver', 'Java Programmer'];
 let wi = 0, ci = 0, deleting = false;
@@ -118,6 +127,36 @@ window.submitServiceInquiry = function(e) {
     document.body.style.overflow = '';
   }, 2000);
 };
+
+// RESUME TIMELINE TABS
+window.switchResTl = function(btn, panel) {
+  document.querySelectorAll('.res-tl-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.res-tl-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('res-tl-' + panel).classList.add('active');
+};
+
+// GITHUB LIVE STATS
+(async function loadGitHubStats() {
+  try {
+    const [userRes, reposRes] = await Promise.all([
+      fetch('https://api.github.com/users/hariomsonihs'),
+      fetch('https://api.github.com/users/hariomsonihs/repos?per_page=100')
+    ]);
+    const user  = await userRes.json();
+    const repos = await reposRes.json();
+
+    const stars = Array.isArray(repos)
+      ? repos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0)
+      : 0;
+
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+    set('gh-repos',     user.public_repos ?? '—');
+    set('gh-followers', user.followers     ?? '—');
+    set('gh-following', user.following     ?? '—');
+    set('gh-stars',     stars);
+  } catch(e) {}
+})();
 
 // INIT
 window.addEventListener('load', () => {

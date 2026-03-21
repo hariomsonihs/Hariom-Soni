@@ -220,6 +220,7 @@ if (projTabsEl) {
   const projState = { personal: null, client: null, college: null };
 
   const TAB_META = {
+    all:      { label: "All",       icon: "fa-solid fa-layer-group" },
     personal: { label: "Personal",  icon: "fa-solid fa-user" },
     client:   { label: "Client",    icon: "fa-solid fa-briefcase" },
     college:  { label: "College",   icon: "fa-solid fa-graduation-cap" }
@@ -227,20 +228,55 @@ if (projTabsEl) {
 
   function rebuildTabs() {
     const available = Object.keys(projState).filter(k => projState[k] && projState[k].length > 0);
-    projTabsEl.innerHTML = available.map((k, i) =>
+    const tabs = available.length > 1 ? ['all', ...available] : available;
+    projTabsEl.innerHTML = tabs.map((k, i) =>
       `<button class="act-tab${i === 0 ? ' active' : ''}" data-proj-tab="${k}">
-        <i class="${TAB_META[k].icon}"></i> ${TAB_META[k].label} Projects
+        <i class="${TAB_META[k].icon}"></i> ${TAB_META[k].label}${k !== 'all' ? ' Projects' : ''}
       </button>`
     ).join("");
 
-    // hide all panels, show first available
-    ["personal","client","college"].forEach(k => {
-      const p = document.getElementById("tab-" + k);
-      if (p) p.classList.remove("active");
+    // hide all panels, show first
+    ['all', 'personal', 'client', 'college'].forEach(k => {
+      const p = document.getElementById('tab-' + k);
+      if (p) p.classList.remove('active');
     });
-    if (available.length > 0) {
-      const first = document.getElementById("tab-" + available[0]);
-      if (first) first.classList.add("active");
+    if (tabs.length > 0) {
+      const first = document.getElementById('tab-' + tabs[0]);
+      if (first) first.classList.add('active');
+    }
+
+    // render All tab
+    const allContainer = document.getElementById('firebase-all-projects');
+    if (allContainer) {
+      const allItems = available.flatMap(k => projState[k] || []);
+      allContainer.innerHTML = allItems.map(([key, d]) => {
+        const proj = projIconHTML(d.icon, d.gradient);
+        const catLabel = d.client ? 'Client' : d.course ? 'College' : 'Personal';
+        const catColor = d.client ? '#f5576c' : d.course ? '#43e97b' : 'var(--primary)';
+        return `<div class="project-card reveal visible">
+          <div class="project-img" style="background:${proj.bg}">${proj.html}</div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span style="background:rgba(87,232,255,0.1);color:${catColor};">${catLabel}</span>
+              ${(d.tags || '').split(',').map(t => `<span>${t.trim()}</span>`).join('')}
+            </div>
+            <h4>${d.title || ''}</h4>
+            <p>${d.description || ''}</p>
+            <div class="project-links">
+              ${d.github ? `<a href="${d.github}" target="_blank"><i class="fa-brands fa-github"></i> Code</a>` : ''}
+              ${d.live   ? `<a href="${d.live}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>` : ''}
+              <a href="#" class="btn-view-project" data-key="${key}"><i class="fa-solid fa-eye"></i> View</a>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+
+      allContainer.querySelectorAll('.btn-view-project').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.preventDefault();
+          openProjectModal(window._projectsData[btn.dataset.key]);
+        });
+      });
     }
 
     // attach click handlers
@@ -248,12 +284,12 @@ if (projTabsEl) {
       btn.addEventListener("click", () => {
         projTabsEl.querySelectorAll(".act-tab").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-        ["personal","client","college"].forEach(k => {
-          const p = document.getElementById("tab-" + k);
-          if (p) p.classList.remove("active");
+        ['all', 'personal', 'client', 'college'].forEach(k => {
+          const p = document.getElementById('tab-' + k);
+          if (p) p.classList.remove('active');
         });
-        const target = document.getElementById("tab-" + btn.dataset.projTab);
-        if (target) target.classList.add("active");
+        const target = document.getElementById('tab-' + btn.dataset.projTab);
+        if (target) target.classList.add('active');
       });
     });
   }
@@ -353,7 +389,7 @@ window.closeProjectModal = (e) => {
 };
 
 // ── CARD MODAL (activities, services, dailylog) ──
-window.openCardModal = ({ icon, title, desc, meta }) => {
+window.openCardModal = ({ icon, title, desc, meta, features, tags, type }) => {
   const overlay = document.getElementById("cardModalOverlay");
   if (!overlay) return;
   document.getElementById("cardModalIcon").className = icon || "fa-solid fa-bolt";
@@ -362,6 +398,45 @@ window.openCardModal = ({ icon, title, desc, meta }) => {
   document.getElementById("cardModalMeta").innerHTML = meta
     ? `<span style="font-size:0.78rem;color:var(--primary);font-weight:600;background:rgba(102,126,234,0.1);padding:3px 12px;border-radius:50px;display:inline-block;margin-bottom:12px;">${meta}</span>`
     : "";
+
+  // features list
+  let featHTML = "";
+  if (features) {
+    const list = features.split(",").map(f => f.trim()).filter(Boolean);
+    if (list.length) {
+      featHTML = `<div class="proj-features-title" style="margin-top:16px;">What's Included</div>
+        <ul class="proj-features">${list.map(f => `<li><i class="fa-solid fa-check"></i>${f}</li>`).join("")}</ul>`;
+    }
+  }
+
+  // view projects button — match tags with all projects
+  let viewProjBtn = "";
+  if (type === "service" && tags) {
+    const tagList = tags.split(",").map(t => t.trim().toLowerCase());
+    // find matching category
+    let matchCat = null;
+    if (window._projectsData) {
+      const catScore = { personal: 0, client: 0, college: 0 };
+      Object.values(window._projectsData).forEach(p => {
+        const ptags = (p.tags || "").toLowerCase();
+        const matched = tagList.some(t => ptags.includes(t));
+        if (matched) {
+          if (p.client) catScore.client++;
+          else if (p.course) catScore.college++;
+          else catScore.personal++;
+        }
+      });
+      const best = Object.entries(catScore).sort((a,b) => b[1]-a[1])[0];
+      if (best[1] > 0) matchCat = best[0];
+    }
+    const url = matchCat ? `projects.html#tab-${matchCat}` : "projects.html";
+    viewProjBtn = `<div style="margin-top:20px;">
+      <a href="${url}" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;font-size:0.85rem;padding:10px 22px;">
+        <i class="fa-solid fa-diagram-project"></i> View Related Projects
+      </a></div>`;
+  }
+
+  document.getElementById("cardModalExtra").innerHTML = featHTML + viewProjBtn;
   overlay.classList.add("active");
   document.body.style.overflow = "hidden";
 };
@@ -387,6 +462,42 @@ document.addEventListener("keydown", e => {
   }
 });
 
+// ── REVIEWS ──
+function renderReviews(containerId, data) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const items = Object.values(data);
+  if (!items.length) {
+    container.innerHTML = `<p style="color:var(--muted);text-align:center;padding:40px 0;grid-column:1/-1;"><i class="fa-solid fa-star" style="display:block;font-size:2rem;margin-bottom:12px;color:var(--primary);"></i>No reviews yet.</p>`;
+    return;
+  }
+  container.innerHTML = items.map(d => {
+    const stars = Math.min(5, Math.max(1, parseInt(d.rating) || 5));
+    const starsHTML = Array.from({length: 5}, (_, i) =>
+      `<i class="fa-${i < stars ? 'solid' : 'regular'} fa-star" style="color:${i < stars ? '#ffd700' : 'var(--muted)'}"></i>`
+    ).join("");
+    return `
+    <div class="review-card reveal visible">
+      <div class="review-header">
+        <div class="review-avatar">${(d.name || "A").charAt(0).toUpperCase()}</div>
+        <div>
+          <div class="review-name">${d.name || "Anonymous"}</div>
+          <div class="review-role">${d.role || ""}</div>
+        </div>
+        <div class="review-stars">${starsHTML}</div>
+      </div>
+      <p class="review-text">${d.review || ""}</p>
+      ${d.project ? `<div class="review-tag"><i class="fa-solid fa-diagram-project"></i> ${d.project}</div>` : ""}
+    </div>`;
+  }).join("");
+}
+
+const projReviews = document.getElementById("firebase-project-reviews");
+if (projReviews) listen("project_reviews", data => renderReviews("firebase-project-reviews", data));
+
+const svcReviews = document.getElementById("firebase-service-reviews");
+if (svcReviews) listen("service_reviews", data => renderReviews("firebase-service-reviews", data));
+
 // ── SERVICES (services.html) ──
 const svcContainer = document.getElementById("firebase-services");
 if (svcContainer) {
@@ -407,7 +518,9 @@ if (svcContainer) {
               data-icon="${d.icon || 'fa-solid fa-briefcase'}"
               data-title="${(d.title||'').replace(/"/g,'&quot;')}"
               data-desc="${(d.description||'').replace(/"/g,'&quot;')}"
-              data-meta="${(d.price||'').replace(/"/g,'&quot;')}">
+              data-meta="${(d.price||'').replace(/"/g,'&quot;')}"
+              data-features="${(d.features||'').replace(/"/g,'&quot;')}"
+              data-tags="${(d.tags||d.title||'').replace(/"/g,'&quot;')}">
               <i class="fa-solid fa-eye"></i> View
             </a>
             <a href="#" class="card-view-btn svc-get-btn"
@@ -421,7 +534,15 @@ if (svcContainer) {
     svcContainer.querySelectorAll(".svc-view-btn").forEach(btn => {
       btn.addEventListener("click", e => {
         e.preventDefault();
-        openCardModal({ icon: btn.dataset.icon, title: btn.dataset.title, desc: btn.dataset.desc, meta: btn.dataset.meta });
+        openCardModal({
+          icon: btn.dataset.icon,
+          title: btn.dataset.title,
+          desc: btn.dataset.desc,
+          meta: btn.dataset.meta,
+          features: btn.dataset.features,
+          tags: btn.dataset.tags,
+          type: "service"
+        });
       });
     });
     svcContainer.querySelectorAll(".svc-get-btn").forEach(btn => {

@@ -55,6 +55,8 @@
     <div class="drawer-socials">
       <a href="https://github.com/hariomsonihs" target="_blank"><i class="fa-brands fa-github"></i></a>
       <a href="https://linkedin.com/in/hariomsonihs" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://instagram.com/hariomsonihs" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://x.com/hariomsonihs" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     </div>
     <div class="drawer-hire">
       <a href="services.html#contact" class="btn-primary" style="display:block;text-align:center;"><i class="fa-solid fa-handshake"></i> Hire Me</a>
@@ -83,6 +85,11 @@
 
       <!-- TABS (shown/hidden dynamically by firebase-data.js) -->
       <div class="act-tabs" id="proj-tabs"></div>
+
+      <!-- TAB: ALL -->
+      <div class="act-tab-panel" id="tab-all">
+        <div class="projects-grid" id="firebase-all-projects"></div>
+      </div>
 
       <!-- TAB: PERSONAL -->
       <div class="act-tab-panel" id="tab-personal">
@@ -117,6 +124,17 @@
         </div>
       </div>
 
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section class="section">
+      <div class="section-title reveal">
+        <h2>Client <span class="gradient-text">Reviews</span></h2>
+        <p>What people say about my work</p>
+      </div>
+      <div class="reviews-grid" id="firebase-project-reviews">
+        <div class="fb-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading reviews...</div>
+      </div>
     </section>
   </main>
 

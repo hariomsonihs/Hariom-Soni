@@ -37,6 +37,9 @@
 </head>
 <body>
 
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scroll-progress"></div>
+
   <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
 
   <aside class="drawer" id="drawer">
@@ -55,6 +58,8 @@
     <div class="drawer-socials">
       <a href="https://github.com/hariomsonihs" target="_blank"><i class="fa-brands fa-github"></i></a>
       <a href="https://linkedin.com/in/hariomsonihs" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://instagram.com/hariomsonihs" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://x.com/hariomsonihs" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     </div>
     <div class="drawer-hire">
       <a href="services.html#contact" class="btn-primary" style="display:block;text-align:center;"><i class="fa-solid fa-handshake"></i> Hire Me</a>
@@ -89,6 +94,130 @@
         </div>
       </div>
 
+      <!-- INTERACTIVE TIMELINE RESUME -->
+      <div class="res-timeline-wrap reveal">
+        <div class="res-tl-tabs">
+          <button class="res-tl-tab active" onclick="switchResTl(this,'experience')"><i class="fa-solid fa-briefcase"></i> Experience</button>
+          <button class="res-tl-tab" onclick="switchResTl(this,'education')"><i class="fa-solid fa-graduation-cap"></i> Education</button>
+          <button class="res-tl-tab" onclick="switchResTl(this,'projects')"><i class="fa-solid fa-diagram-project"></i> Projects</button>
+        </div>
+
+        <!-- EXPERIENCE TIMELINE -->
+        <div class="res-tl-panel active" id="res-tl-experience">
+          <div class="res-tl">
+            <div class="res-tl-item">
+              <div class="res-tl-dot"><i class="fa-solid fa-briefcase"></i></div>
+              <div class="res-tl-card">
+                <span class="res-tl-date"><i class="fa-regular fa-calendar"></i> May 2025 – Jul 2025</span>
+                <h4>Web Development Intern</h4>
+                <p class="res-tl-company"><i class="fa-solid fa-building"></i> Infotact Solutions</p>
+                <p class="res-tl-desc">Developed Foodela — a responsive web app using React, Express and MongoDB. Improved frontend performance and user interaction.</p>
+                <div class="res-tl-tags"><span>React</span><span>Node.js</span><span>MongoDB</span></div>
+              </div>
+            </div>
+            <div class="res-tl-item">
+              <div class="res-tl-dot"><i class="fa-solid fa-code"></i></div>
+              <div class="res-tl-card">
+                <span class="res-tl-date"><i class="fa-regular fa-calendar"></i> May 2025</span>
+                <h4>Frontend Development Intern</h4>
+                <p class="res-tl-company"><i class="fa-solid fa-building"></i> CodeAlpha</p>
+                <p class="res-tl-desc">Created responsive web pages using HTML, CSS, and JavaScript improving cross-device compatibility.</p>
+                <div class="res-tl-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+              </div>
+            </div>
+            <div class="res-tl-item">
+              <div class="res-tl-dot"><i class="fa-solid fa-chalkboard-teacher"></i></div>
+              <div class="res-tl-card">
+                <span class="res-tl-date"><i class="fa-regular fa-calendar"></i> Apr 2021 – Jan 2023</span>
+                <h4>Computer Teacher</h4>
+                <p class="res-tl-company"><i class="fa-solid fa-building"></i> Elite Computer Classes</p>
+                <p class="res-tl-desc">Taught ADCA and programming fundamentals to 100+ students.</p>
+                <div class="res-tl-tags"><span>Teaching</span><span>ADCA</span><span>Programming</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EDUCATION TIMELINE -->
+        <div class="res-tl-panel" id="res-tl-education">
+          <div class="res-tl">
+            <div class="res-tl-item">
+              <div class="res-tl-dot" style="background:var(--grad2)"><i class="fa-solid fa-graduation-cap"></i></div>
+              <div class="res-tl-card">
+                <span class="res-tl-date"><i class="fa-regular fa-calendar"></i> 2023 – 2027</span>
+                <h4>B.Tech in Computer Science & Engineering</h4>
+                <p class="res-tl-company"><i class="fa-solid fa-university"></i> Centurion University of Technology and Management</p>
+                <p class="res-tl-desc">Pursuing B.Tech CSE with focus on Android development, web technologies, and software engineering.</p>
+                <div class="res-tl-tags"><span>B.Tech</span><span>CSE</span><span>Current</span></div>
+              </div>
+            </div>
+            <div class="res-tl-item">
+              <div class="res-tl-dot" style="background:var(--grad2)"><i class="fa-solid fa-school"></i></div>
+              <div class="res-tl-card">
+                <span class="res-tl-date"><i class="fa-regular fa-calendar"></i> 2021 – 2023</span>
+                <h4>Intermediate of Science</h4>
+                <p class="res-tl-company"><i class="fa-solid fa-university"></i> Tarkeshwar Prasad Verma College</p>
+                <p class="res-tl-desc">Completed Intermediate with Science stream.</p>
+                <div class="res-tl-tags"><span>Science</span><span>12th</span></div>
+              </div>
+            </div>
+            <div class="res-tl-item">
+              <div class="res-tl-dot" style="background:var(--grad2)"><i class="fa-solid fa-school-flag"></i></div>
+              <div class="res-tl-card">
+                <span class="res-tl-date"><i class="fa-regular fa-calendar"></i> 2021</span>
+                <h4>Matriculation</h4>
+                <p class="res-tl-company"><i class="fa-solid fa-university"></i> +2 High School Narkatiaganj</p>
+                <p class="res-tl-desc">Completed 10th standard education.</p>
+                <div class="res-tl-tags"><span>10th</span><span>Matriculation</span></div>
+              </div>
+            </div>
+            <div class="res-tl-item">
+              <div class="res-tl-dot" style="background:var(--grad2)"><i class="fa-solid fa-computer"></i></div>
+              <div class="res-tl-card">
+                <span class="res-tl-date"><i class="fa-regular fa-calendar"></i> 2021 – 2022</span>
+                <h4>ADCA – Advanced Diploma in Computer Applications</h4>
+                <p class="res-tl-company"><i class="fa-solid fa-university"></i> Elite Computer Classes</p>
+                <p class="res-tl-desc">Completed advanced diploma covering MS Office, programming basics, and computer fundamentals.</p>
+                <div class="res-tl-tags"><span>ADCA</span><span>Diploma</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECTS TIMELINE -->
+        <div class="res-tl-panel" id="res-tl-projects">
+          <div class="res-tl">
+            <div class="res-tl-item">
+              <div class="res-tl-dot" style="background:linear-gradient(135deg,#43e97b,#38f9d7)"><i class="fa-brands fa-android"></i></div>
+              <div class="res-tl-card">
+                <span class="res-tl-date"><i class="fa-solid fa-tag"></i> Android App</span>
+                <h4>NotesAura – Programming Guide</h4>
+                <p class="res-tl-desc">Android learning platform with 100+ tutorials, quizzes, smart search, and offline access. 500+ learners.</p>
+                <div class="res-tl-tags"><span>Java</span><span>Android</span><span>Firebase</span></div>
+              </div>
+            </div>
+            <div class="res-tl-item">
+              <div class="res-tl-dot" style="background:linear-gradient(135deg,#43e97b,#38f9d7)"><i class="fa-solid fa-book"></i></div>
+              <div class="res-tl-card">
+                <span class="res-tl-date"><i class="fa-solid fa-tag"></i> Android App</span>
+                <h4>Vocab Doctor – Dictionary Learning App</h4>
+                <p class="res-tl-desc">Vocabulary learning app with offline access, smart search, and daily word updates powered by Firebase.</p>
+                <div class="res-tl-tags"><span>Java</span><span>Android</span><span>Firebase</span></div>
+              </div>
+            </div>
+            <div class="res-tl-item">
+              <div class="res-tl-dot" style="background:linear-gradient(135deg,#43e97b,#38f9d7)"><i class="fa-solid fa-laptop-code"></i></div>
+              <div class="res-tl-card">
+                <span class="res-tl-date"><i class="fa-solid fa-tag"></i> Android App</span>
+                <h4>Elite Computer Classes – Learning App</h4>
+                <p class="res-tl-desc">Android learning platform with courses, PDFs, offline resources, and Firebase real-time updates.</p>
+                <div class="res-tl-tags"><span>Java</span><span>Android</span><span>Firebase</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- RESUME CARD -->
       <div class="resume-card reveal">
 
@@ -103,6 +232,12 @@
             <a href="https://linkedin.com/in/hariomsonihs" target="_blank"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/hariomsonihs</a>
             <a href="https://github.com/hariomsonihs" target="_blank"><i class="fa-brands fa-github"></i> github.com/hariomsonihs</a>
             <span><i class="fa-solid fa-location-dot"></i> West Champaran, Bihar, India</span>
+          </div>
+          <div style="display:flex;justify-content:center;gap:14px;margin-top:12px;">
+            <a href="https://github.com/hariomsonihs" target="_blank" style="color:var(--muted);font-size:1.1rem;transition:color 0.2s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--muted)'"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com/in/hariomsonihs" target="_blank" style="color:var(--muted);font-size:1.1rem;transition:color 0.2s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--muted)'"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://instagram.com/hariomsonihs" target="_blank" style="color:var(--muted);font-size:1.1rem;transition:color 0.2s;" onmouseover="this.style.color='#e1306c'" onmouseout="this.style.color='var(--muted)'"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://x.com/hariomsonihs" target="_blank" style="color:var(--muted);font-size:1.1rem;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'"><i class="fa-brands fa-x-twitter"></i></a>
           </div>
         </div>
 

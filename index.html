@@ -71,6 +71,9 @@
 </head>
 <body>
 
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scroll-progress"></div>
+
   <!-- OVERLAY -->
   <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
 
@@ -93,6 +96,8 @@
     <div class="drawer-socials">
       <a href="https://github.com/hariomsonihs" target="_blank"><i class="fa-brands fa-github"></i></a>
       <a href="https://linkedin.com/in/hariomsonihs" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://instagram.com/hariomsonihs" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://x.com/hariomsonihs" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     </div>
     <div class="drawer-hire">
       <a href="services.html#contact" class="btn-primary" style="display:block;text-align:center;"><i class="fa-solid fa-handshake"></i> Hire Me</a>
@@ -278,6 +283,38 @@
       </div>
     </section>
 
+    <!-- GITHUB STATS -->
+    <section class="section">
+      <div class="section-title reveal"><h2>GitHub <span class="gradient-text">Stats</span></h2><p>My open source activity & contributions</p></div>
+      <div class="github-stats-grid reveal">
+
+        <!-- LIVE STATS CARD -->
+        <div class="gh-live-card">
+          <div class="gh-live-header">
+            <img src="https://avatars.githubusercontent.com/hariomsonihs" class="gh-avatar" alt="GitHub Avatar" />
+            <div>
+              <div class="gh-username">hariomsonihs</div>
+              <div class="gh-label">GitHub Profile</div>
+            </div>
+            <a href="https://github.com/hariomsonihs" target="_blank" class="gh-profile-btn"><i class="fa-brands fa-github"></i> View</a>
+          </div>
+          <div class="gh-stats-row" id="gh-stats-row">
+            <div class="gh-stat-box"><span id="gh-repos">—</span><small>Public Repos</small></div>
+            <div class="gh-stat-box"><span id="gh-followers">—</span><small>Followers</small></div>
+            <div class="gh-stat-box"><span id="gh-following">—</span><small>Following</small></div>
+            <div class="gh-stat-box"><span id="gh-stars">—</span><small>Total Stars</small></div>
+          </div>
+        </div>
+
+        <!-- TOP LANGUAGES -->
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=hariomsonihs&layout=compact&theme=transparent&hide_border=true&title_color=57e8ff&text_color=eef4ff&bg_color=00000000&langs_count=8" alt="Top Languages" class="gh-stat-img" loading="lazy" />
+
+        <!-- STREAK -->
+        <img src="https://streak-stats.demolab.com/?user=hariomsonihs&theme=transparent&hide_border=true&stroke=57e8ff&ring=b868ff&fire=ff6ba7&currStreakLabel=57e8ff&sideLabels=eef4ff&dates=b0bddf&background=00000000" alt="GitHub Streak" class="gh-stat-img gh-streak" loading="lazy" />
+
+      </div>
+    </section>
+
     <!-- PROJECTS PREVIEW -->
     <section class="section">
       <div class="section-title"><h2>My <span class="gradient-text">Projects</span></h2><p>Things I've built with passion</p></div>
@@ -363,7 +400,7 @@
     <a href="resume.html" class="bn-item"><i class="fa-solid fa-file-lines"></i><span>Resume</span></a>
   </nav>
 
-  <!-- CARD MODAL (for certifications view) -->
+  <!-- CARD MODAL -->
   <div class="proj-modal-overlay" id="cardModalOverlay" onclick="closeCardModal(event)">
     <div class="proj-modal">
       <div class="proj-modal-banner" id="cardModalBanner" style="background:var(--grad)">
@@ -374,6 +411,7 @@
         <div id="cardModalMeta"></div>
         <h2 id="cardModalTitle"></h2>
         <p class="proj-desc" id="cardModalDesc"></p>
+        <div id="cardModalExtra"></div>
       </div>
     </div>
   </div>
