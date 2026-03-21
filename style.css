@@ -1060,9 +1060,18 @@ main { padding-top: var(--nav-h); }
   border: 1px solid var(--border);
   border-radius: 24px;
   width: 100%; max-width: 600px;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
   animation: modalIn 0.3s cubic-bezier(.4,0,.2,1);
+}
+.proj-modal-banner {
+  flex-shrink: 0;
+}
+.proj-modal-body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  flex: 1;
 }
 @keyframes modalIn { from { opacity:0; transform:scale(0.93) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
 
@@ -1087,6 +1096,9 @@ main { padding-top: var(--nav-h); }
 .proj-modal-close:hover { background: rgba(245,87,108,0.6); }
 
 .proj-modal-body { padding: 28px; }
+.proj-modal-body::-webkit-scrollbar { width: 4px; }
+.proj-modal-body::-webkit-scrollbar-track { background: transparent; }
+.proj-modal-body::-webkit-scrollbar-thumb { background: rgba(87,232,255,0.3); border-radius: 10px; }
 .proj-modal-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
 .proj-modal-tags span {
   font-size: 0.72rem; padding: 3px 10px;
@@ -1549,7 +1561,6 @@ body {
 .notesaura-wrap,
 .log-entry,
 .resume-card,
-.proj-modal,
 .na-course {
   position: relative;
   overflow: hidden;
@@ -1565,7 +1576,6 @@ body {
 .notesaura-wrap::after,
 .log-entry::after,
 .resume-card::after,
-.proj-modal::after,
 .na-course::after {
   content: '';
   position: absolute;
@@ -1591,7 +1601,6 @@ body {
 .notesaura-wrap:hover::after,
 .log-entry:hover::after,
 .resume-card:hover::after,
-.proj-modal:hover::after,
 .na-course:hover::after {
   opacity: 1;
   filter: drop-shadow(0 0 18px rgba(87, 232, 255, 0.32));
