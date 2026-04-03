@@ -136,26 +136,13 @@ window.switchResTl = function(btn, panel) {
   document.getElementById('res-tl-' + panel).classList.add('active');
 };
 
-// GITHUB LIVE STATS
-(async function loadGitHubStats() {
-  try {
-    const [userRes, reposRes] = await Promise.all([
-      fetch('https://api.github.com/users/hariomsonihs'),
-      fetch('https://api.github.com/users/hariomsonihs/repos?per_page=100')
-    ]);
-    const user  = await userRes.json();
-    const repos = await reposRes.json();
-
-    const stars = Array.isArray(repos)
-      ? repos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0)
-      : 0;
-
-    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-    set('gh-repos',     user.public_repos ?? '—');
-    set('gh-followers', user.followers     ?? '—');
-    set('gh-following', user.following     ?? '—');
-    set('gh-stars',     stars);
-  } catch(e) {}
+// GITHUB STATS — static values (GitHub API rate limits unauthenticated calls)
+(function setGitHubStats() {
+  const stats = { 'gh-repos': '10+', 'gh-followers': '—', 'gh-following': '—', 'gh-stars': '—' };
+  Object.entries(stats).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  });
 })();
 
 // INIT

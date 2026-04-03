@@ -89,8 +89,8 @@
           <p style="color:var(--muted);font-size:0.9rem;margin-top:4px">Full overview of my education, experience &amp; skills</p>
         </div>
         <div class="resume-actions">
-          <a href="resume.pdf" target="_blank" class="btn-outline resume-btn"><i class="fa-solid fa-eye"></i> View PDF</a>
-          <a href="https://drive.google.com/uc?export=download&id=1dpEDG7XeBtsKDnGbFLjhDjZ08HNtsqaE" target="_blank" class="btn-primary resume-btn"><i class="fa-solid fa-download"></i> Download PDF</a>
+          <a href="resume.pdf" target="_blank" id="firebase-res-pdf-view" class="btn-outline resume-btn"><i class="fa-solid fa-eye"></i> View PDF</a>
+          <a href="https://drive.google.com/uc?export=download&id=1dpEDG7XeBtsKDnGbFLjhDjZ08HNtsqaE" target="_blank" id="firebase-res-pdf-download" class="btn-primary resume-btn"><i class="fa-solid fa-download"></i> Download PDF</a>
         </div>
       </div>
 
@@ -224,14 +224,14 @@
         <!-- NAME & CONTACT -->
         <div class="res-header">
           <img src="profile-photo.jpeg" alt="Hariom Kumar" class="res-profile-photo" />
-          <h1>HARIOM KUMAR</h1>
-          <p class="res-title">Android &amp; Web Developer</p>
+          <h1 id="firebase-res-name">HARIOM KUMAR</h1>
+          <p class="res-title" id="firebase-res-role">Android &amp; Web Developer</p>
           <div class="res-contact">
-            <span><i class="fa-solid fa-phone"></i> 7667110195</span>
-            <span><i class="fa-solid fa-envelope"></i> hariomsoni0818@gmail.com</span>
-            <a href="https://linkedin.com/in/hariomsonihs" target="_blank"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/hariomsonihs</a>
-            <a href="https://github.com/hariomsonihs" target="_blank"><i class="fa-brands fa-github"></i> github.com/hariomsonihs</a>
-            <span><i class="fa-solid fa-location-dot"></i> West Champaran, Bihar, India</span>
+            <span><i class="fa-solid fa-phone"></i> <span id="firebase-res-phone">7667110195</span></span>
+            <span><i class="fa-solid fa-envelope"></i> <span id="firebase-res-email">hariomsoni0818@gmail.com</span></span>
+            <a href="https://linkedin.com/in/hariomsonihs" target="_blank" id="firebase-res-linkedin"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/hariomsonihs</a>
+            <a href="https://github.com/hariomsonihs" target="_blank" id="firebase-res-github"><i class="fa-brands fa-github"></i> github.com/hariomsonihs</a>
+            <span><i class="fa-solid fa-location-dot"></i> <span id="firebase-res-location">West Champaran, Bihar, India</span></span>
           </div>
           <div style="display:flex;justify-content:center;gap:14px;margin-top:12px;">
             <a href="https://github.com/hariomsonihs" target="_blank" style="color:var(--muted);font-size:1.1rem;transition:color 0.2s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--muted)'"><i class="fa-brands fa-github"></i></a>
@@ -254,7 +254,7 @@
         <!-- TECHNICAL SKILLS -->
         <div class="res-section">
           <h3 class="res-section-title"><i class="fa-solid fa-code"></i> Technical Skills</h3>
-          <div class="res-skills-grid">
+          <div class="res-skills-grid" id="firebase-res-skills">
             <div class="res-skill-row"><strong>Programming Languages</strong><span>Java, C</span></div>
             <div class="res-skill-row"><strong>Mobile Development</strong><span>Android Development, Flutter, Android Studio, XML, JSON</span></div>
             <div class="res-skill-row"><strong>Web Development</strong><span>HTML, CSS, JavaScript, React, Responsive Design</span></div>
@@ -269,28 +269,10 @@
         <div class="res-section">
           <h3 class="res-section-title"><i class="fa-solid fa-diagram-project"></i> Projects</h3>
 
-          <div class="res-project">
-            <div class="res-project-title">NotesAura – Programming Guide <span class="res-tag">Android App</span></div>
-            <ul class="res-bullets">
-              <li>Built an Android learning platform featuring 100+ programming tutorials, structured notes, quizzes, and smart search functionality.</li>
-              <li>Integrated secure payment gateway and supporting web platform, improving accessibility for 500+ learners.</li>
-            </ul>
-          </div>
-
-          <div class="res-project">
-            <div class="res-project-title">Vocab Doctor – Dictionary Learning App <span class="res-tag">Android App</span></div>
-            <ul class="res-bullets">
-              <li>Created an Android vocabulary learning application with offline access, smart search, and daily word updates.</li>
-              <li>Implemented Firebase backend enabling real-time synchronization and improved data reliability.</li>
-            </ul>
-          </div>
-
-          <div class="res-project">
-            <div class="res-project-title">Elite Computer Classes – Learning App <span class="res-tag">Android App</span></div>
-            <ul class="res-bullets">
-              <li>Designed an Android learning platform delivering courses, PDFs, offline study resources, and search functionality.</li>
-              <li>Integrated Firebase-based real-time updates improving content accessibility for students.</li>
-            </ul>
+          <div id="firebase-res-projects">
+            <div class="res-project"><div class="res-project-title">NotesAura – Programming Guide <span class="res-tag">Android App</span></div><ul class="res-bullets"><li>Built an Android learning platform featuring 100+ programming tutorials, structured notes, quizzes, and smart search functionality.</li><li>Integrated secure payment gateway and supporting web platform, improving accessibility for 500+ learners.</li></ul></div>
+            <div class="res-project"><div class="res-project-title">Vocab Doctor – Dictionary Learning App <span class="res-tag">Android App</span></div><ul class="res-bullets"><li>Created an Android vocabulary learning application with offline access, smart search, and daily word updates.</li><li>Implemented Firebase backend enabling real-time synchronization and improved data reliability.</li></ul></div>
+            <div class="res-project"><div class="res-project-title">Elite Computer Classes – Learning App <span class="res-tag">Android App</span></div><ul class="res-bullets"><li>Designed an Android learning platform delivering courses, PDFs, offline study resources, and search functionality.</li><li>Integrated Firebase-based real-time updates improving content accessibility for students.</li></ul></div>
           </div>
         </div>
 
@@ -300,34 +282,28 @@
         <div class="res-section">
           <h3 class="res-section-title"><i class="fa-solid fa-briefcase"></i> Experience</h3>
 
-          <div class="res-exp-item">
-            <div class="res-exp-header">
-              <div><strong>Web Development Intern</strong> — Infotact Solutions</div>
-              <span class="res-date">May 2025 – Jul 2025</span>
+          <div id="firebase-res-experience">
+            <div class="res-exp-item">
+              <div class="res-exp-header">
+                <div><strong>Web Development Intern</strong> — Infotact Solutions</div>
+                <span class="res-date">May 2025 – Jul 2025</span>
+              </div>
+              <ul class="res-bullets"><li>Developed a responsive web application using React, Express and MongoDB — Foodela, improving frontend performance and user interaction.</li></ul>
             </div>
-            <ul class="res-bullets">
-              <li>Developed a responsive web application using React, Express and MongoDB — Foodela, improving frontend performance and user interaction.</li>
-            </ul>
-          </div>
-
-          <div class="res-exp-item">
-            <div class="res-exp-header">
-              <div><strong>Frontend Development Intern</strong> — CodeAlpha</div>
-              <span class="res-date">May 2025</span>
+            <div class="res-exp-item">
+              <div class="res-exp-header">
+                <div><strong>Frontend Development Intern</strong> — CodeAlpha</div>
+                <span class="res-date">May 2025</span>
+              </div>
+              <ul class="res-bullets"><li>Created responsive web pages using HTML, CSS, and JavaScript improving cross-device compatibility.</li></ul>
             </div>
-            <ul class="res-bullets">
-              <li>Created responsive web pages using HTML, CSS, and JavaScript improving cross-device compatibility.</li>
-            </ul>
-          </div>
-
-          <div class="res-exp-item">
-            <div class="res-exp-header">
-              <div><strong>Computer Teacher</strong> — Elite Computer Classes</div>
-              <span class="res-date">Apr 2021 – Jan 2023</span>
+            <div class="res-exp-item">
+              <div class="res-exp-header">
+                <div><strong>Computer Teacher</strong> — Elite Computer Classes</div>
+                <span class="res-date">Apr 2021 – Jan 2023</span>
+              </div>
+              <ul class="res-bullets"><li>Taught Advance Diploma in Computer Applications (ADCA) and programming fundamentals to 100+ students.</li></ul>
             </div>
-            <ul class="res-bullets">
-              <li>Taught Advance Diploma in Computer Applications (ADCA) and programming fundamentals to 100+ students.</li>
-            </ul>
           </div>
         </div>
 
@@ -336,27 +312,11 @@
         <!-- EDUCATION -->
         <div class="res-section">
           <h3 class="res-section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h3>
-          <div class="res-edu-grid">
-            <div class="res-edu-item">
-              <div class="res-edu-degree">B.Tech in Computer Science &amp; Engineering</div>
-              <div class="res-edu-inst">Centurion University of Technology and Management</div>
-              <span class="res-date">2023 – 2027</span>
-            </div>
-            <div class="res-edu-item">
-              <div class="res-edu-degree">Intermediate of Science</div>
-              <div class="res-edu-inst">Tarkeshwar Prasad Verma College</div>
-              <span class="res-date">2021 – 2023</span>
-            </div>
-            <div class="res-edu-item">
-              <div class="res-edu-degree">Matriculation</div>
-              <div class="res-edu-inst">+2 High School Narkatiaganj</div>
-              <span class="res-date">2021</span>
-            </div>
-            <div class="res-edu-item">
-              <div class="res-edu-degree">ADCA – Advanced Diploma in Computer Applications</div>
-              <div class="res-edu-inst">Elite Computer Classes</div>
-              <span class="res-date">2021 – 2022</span>
-            </div>
+          <div class="res-edu-grid" id="firebase-res-education">
+            <div class="res-edu-item"><div class="res-edu-degree">B.Tech in Computer Science &amp; Engineering</div><div class="res-edu-inst">Centurion University of Technology and Management</div><span class="res-date">2023 – 2027</span></div>
+            <div class="res-edu-item"><div class="res-edu-degree">Intermediate of Science</div><div class="res-edu-inst">Tarkeshwar Prasad Verma College</div><span class="res-date">2021 – 2023</span></div>
+            <div class="res-edu-item"><div class="res-edu-degree">Matriculation</div><div class="res-edu-inst">+2 High School Narkatiaganj</div><span class="res-date">2021</span></div>
+            <div class="res-edu-item"><div class="res-edu-degree">ADCA – Advanced Diploma in Computer Applications</div><div class="res-edu-inst">Elite Computer Classes</div><span class="res-date">2021 – 2022</span></div>
           </div>
         </div>
 
@@ -365,7 +325,7 @@
         <!-- CERTIFICATIONS -->
         <div class="res-section">
           <h3 class="res-section-title"><i class="fa-solid fa-certificate"></i> Certifications</h3>
-          <ul class="res-cert-list">
+          <ul class="res-cert-list" id="firebase-res-certifications">
             <li><i class="fa-solid fa-check-circle"></i> Android Mobile Application Development — SWAYAM (MHRD)</li>
             <li><i class="fa-solid fa-check-circle"></i> Android Development with Kotlin</li>
             <li><i class="fa-solid fa-check-circle"></i> HTML &amp; CSS Training — HCL GUVI</li>
@@ -379,7 +339,7 @@
         <div class="res-bottom-grid">
           <div class="res-section">
             <h3 class="res-section-title"><i class="fa-solid fa-brain"></i> Soft Skills</h3>
-            <div class="soft-skills">
+            <div class="soft-skills" id="firebase-res-softskills">
               <span><i class="fa-solid fa-lightbulb"></i> Problem Solving</span>
               <span><i class="fa-solid fa-users"></i> Team Collaboration</span>
               <span><i class="fa-solid fa-comments"></i> Communication</span>
@@ -388,19 +348,10 @@
           </div>
           <div class="res-section">
             <h3 class="res-section-title"><i class="fa-solid fa-language"></i> Languages</h3>
-            <ul class="lang-list">
-              <li>
-                <div class="lang-info"><span>English</span><span class="lang-level">Professional</span></div>
-                <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
-              </li>
-              <li>
-                <div class="lang-info"><span>Hindi</span><span class="lang-level">Native</span></div>
-                <div class="skill-bar"><div class="skill-fill" data-width="100"></div></div>
-              </li>
-              <li>
-                <div class="lang-info"><span>Bhojpuri</span><span class="lang-level">Native</span></div>
-                <div class="skill-bar"><div class="skill-fill" data-width="100"></div></div>
-              </li>
+            <ul class="lang-list" id="firebase-res-languages">
+              <li><div class="lang-info"><span>English</span><span class="lang-level">Professional</span></div><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></li>
+              <li><div class="lang-info"><span>Hindi</span><span class="lang-level">Native</span></div><div class="skill-bar"><div class="skill-fill" data-width="100"></div></div></li>
+              <li><div class="lang-info"><span>Bhojpuri</span><span class="lang-level">Native</span></div><div class="skill-bar"><div class="skill-fill" data-width="100"></div></div></li>
             </ul>
           </div>
         </div>

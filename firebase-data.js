@@ -18,6 +18,36 @@ function listen(path, cb) {
   onValue(ref(db, path), snap => cb(snap.val() || {}));
 }
 
+// ── GITHUB STATS (index.html) ──
+const ghLiveCard = document.getElementById('gh-stats-row');
+if (ghLiveCard) {
+  listen('github_stats', d => {
+    if (!d || !d.repos) return;
+    ghLiveCard.innerHTML =
+      `<div class="gh-stat-box"><span>${d.repos||'43'}</span><small>Public Repos</small></div>` +
+      `<div class="gh-stat-box"><span>${d.contrib_current||'903'}</span><small>Contributions '${d.year_current||'26'}</small></div>` +
+      `<div class="gh-stat-box"><span>${d.contrib_prev||'944'}</span><small>Contributions '${d.year_prev||'25'}</small></div>` +
+      `<div class="gh-stat-box"><span>${d.followers||'2'}</span><small>Followers</small></div>`;
+
+    // top languages
+    const langsEl = document.getElementById('gh-langs-list');
+    if (langsEl && d.languages) {
+      langsEl.innerHTML = d.languages.split('\n').filter(Boolean).map(line => {
+        const [name, pct, color] = line.split('|').map(s => s.trim());
+        const p = pct || '10';
+        const c = color || '#667eea';
+        return `<div class="gh-lang-item">
+          <div class="gh-lang-info"><span class="gh-lang-dot" style="background:${c}"></span><span>${name}</span><span class="gh-lang-pct">${p}%</span></div>
+          <div class="gh-lang-bar"><div class="gh-lang-fill" style="width:${p}%;background:${c}"></div></div>
+        </div>`;
+      }).join('');
+    }
+
+    if (d.orcid)       { const el = document.getElementById('gh-orcid-link');       if (el) el.href = d.orcid; }
+    if (d.achievement) { const el = document.getElementById('gh-achievement-link'); if (el) el.href = d.achievement; }
+  });
+}
+
 // ── CERTIFICATIONS (index.html) ──
 const certContainer = document.getElementById("firebase-certifications");
 if (certContainer) {
@@ -556,13 +586,119 @@ if (svcContainer) {
 
 // ── RESUME (resume.html) ──
 const resSummary = document.getElementById("firebase-res-summary");
-const resPdfView = document.getElementById("firebase-res-pdf-view");
-const resPdfDownload = document.getElementById("firebase-res-pdf-download");
-if (resSummary || resPdfView) {
-  listen("resume", data => {
-    if (resSummary && data.summary) resSummary.textContent = data.summary;
-    if (resPdfView && data.pdfView) { resPdfView.href = data.pdfView; resPdfView.classList.remove("hidden"); }
-    if (resPdfDownload && data.pdfDownload) { resPdfDownload.href = data.pdfDownload; resPdfDownload.classList.remove("hidden"); }
+if (resSummary) {
+  listen("resume", d => {
+    // PDF buttons
+    const pdfView = document.getElementById("firebase-res-pdf-view");
+    const pdfDl   = document.getElementById("firebase-res-pdf-download");
+    if (pdfView && d.pdfView)     { pdfView.href = d.pdfView; }
+    if (pdfDl   && d.pdfDownload) { pdfDl.href   = d.pdfDownload; }
+
+    // Basic info
+    const setText = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+    const setHTML = (id, val) => { const el = document.getElementById(id); if (el && val) el.innerHTML  = val; };
+    setText("firebase-res-name",     d.name);
+    setText("firebase-res-role",     d.role);
+    setText("firebase-res-phone",    d.phone);
+    setText("firebase-res-email",    d.email);
+    setText("firebase-res-location", d.location);
+    if (d.linkedin) {
+      const lnEl = document.getElementById("firebase-res-linkedin");
+      if (lnEl) { lnEl.href = d.linkedin; lnEl.textContent = d.linkedin.replace("https://",""); }
+    }
+    if (d.github) {
+      const ghEl = document.getElementById("firebase-res-github");
+      if (ghEl) { ghEl.href = d.github; ghEl.textContent = d.github.replace("https://",""); }
+    }
+
+    // Summary
+    if (resSummary && d.summary) resSummary.textContent = d.summary;
+
+    // Skills
+    const skillsEl = document.getElementById("firebase-res-skills");
+    if (skillsEl && d.skills) {
+      skillsEl.innerHTML = d.skills.split("\n").filter(Boolean).map(line => {
+        const [cat, ...rest] = line.split("|");
+        return `<div class="res-skill-row"><strong>${cat.trim()}</strong><span>${(rest.join("|")).trim()}</span></div>`;
+      }).join("");
+    }
+
+    // Experience
+    const expEl = document.getElementById("firebase-res-experience");
+    if (expEl && d.experience) {
+      expEl.innerHTML = d.experience.split("\n").filter(Boolean).map(line => {
+        const [role, company, date, desc, tags] = line.split("|").map(s => s.trim());
+        return `<div class="res-exp-item">
+          <div class="res-exp-header">
+            <div><strong>${role||""}</strong>${company ? " — " + company : ""}</div>
+            ${date ? `<span class="res-date">${date}</span>` : ""}
+          </div>
+          ${desc ? `<ul class="res-bullets"><li>${desc}</li></ul>` : ""}
+          ${tags ? `<div class="res-tl-tags" style="margin-top:8px;">${tags.split(",").map(t=>`<span>${t.trim()}</span>`).join("")}</div>` : ""}
+        </div>`;
+      }).join("");
+    }
+
+    // Education
+    const eduEl = document.getElementById("firebase-res-education");
+    if (eduEl && d.education) {
+      eduEl.innerHTML = d.education.split("\n").filter(Boolean).map(line => {
+        const [deg, inst, yr] = line.split("|").map(s => s.trim());
+        return `<div class="res-edu-item">
+          <div class="res-edu-degree">${deg||""}</div>
+          <div class="res-edu-inst">${inst||""}</div>
+          ${yr ? `<span class="res-date">${yr}</span>` : ""}
+        </div>`;
+      }).join("");
+    }
+
+    // Projects
+    const projEl = document.getElementById("firebase-res-projects");
+    if (projEl && d.projects) {
+      projEl.innerHTML = d.projects.split("\n").filter(Boolean).map(line => {
+        const [title, tag, bullets] = line.split("|").map(s => s.trim());
+        const bulletList = (bullets||"").split(";").filter(Boolean)
+          .map(b => `<li>${b.trim()}</li>`).join("");
+        return `<div class="res-project">
+          <div class="res-project-title">${title||""} ${tag ? `<span class="res-tag">${tag}</span>` : ""}</div>
+          ${bulletList ? `<ul class="res-bullets">${bulletList}</ul>` : ""}
+        </div>`;
+      }).join("");
+    }
+
+    // Certifications
+    const certEl = document.getElementById("firebase-res-certifications");
+    if (certEl && d.certifications) {
+      certEl.innerHTML = d.certifications.split("\n").filter(Boolean)
+        .map(c => `<li><i class="fa-solid fa-check-circle"></i> ${c.trim()}</li>`).join("");
+    }
+
+    // Soft Skills
+    const ssEl = document.getElementById("firebase-res-softskills");
+    if (ssEl && d.softskills) {
+      const icons = { "Problem Solving":"fa-lightbulb", "Team Collaboration":"fa-users", "Communication":"fa-comments", "Adaptability":"fa-arrows-rotate" };
+      ssEl.innerHTML = d.softskills.split(",").filter(Boolean).map(s => {
+        const sk = s.trim();
+        const ic = icons[sk] || "fa-star";
+        return `<span><i class="fa-solid ${ic}"></i> ${sk}</span>`;
+      }).join("");
+    }
+
+    // Languages
+    const langEl = document.getElementById("firebase-res-languages");
+    if (langEl && d.languages) {
+      langEl.innerHTML = d.languages.split("\n").filter(Boolean).map(line => {
+        const [lang, level, pct] = line.split("|").map(s => s.trim());
+        return `<li>
+          <div class="lang-info"><span>${lang||""}</span><span class="lang-level">${level||""}</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="${pct||80}"></div></div>
+        </li>`;
+      }).join("");
+      // trigger skill bar animation
+      langEl.querySelectorAll(".skill-fill").forEach(el => {
+        el.style.width = (el.dataset.width || 80) + "%";
+      });
+    }
   });
 }
 
