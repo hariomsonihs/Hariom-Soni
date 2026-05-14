@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | Hariom Kumar</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="login-logo">HK<span>.</span></div>
+      <h2>Admin Panel</h2>
+      <p>Sign in to manage your portfolio</p>
+      <form id="loginForm">
+        <div class="input-group">
+          <i class="fa-solid fa-envelope"></i>
+          <input type="email" id="loginEmail" placeholder="Email" required />
+        </div>
+        <div class="input-group">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="loginPassword" placeholder="Password" required />
+        </div>
+        <div id="loginError" class="login-error"></div>
+        <button type="submit" class="btn-login">Sign In <i class="fa-solid fa-arrow-right"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN LAYOUT -->
+  <div id="adminApp" class="admin-app hidden">
+
+    <!-- SIDEBAR OVERLAY -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">HK<span>.</span> <small>Admin</small></div>
+      <nav class="sidebar-nav">
+        <a href="#" class="sn-item active" data-section="dashboard" onclick="switchSection('dashboard');closeSidebar();return false;"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="#" class="sn-item" data-section="experience" onclick="switchSection('experience');closeSidebar();return false;"><i class="fa-solid fa-briefcase"></i> Experience</a>
+        <a href="#" class="sn-item" data-section="personal_projects" onclick="switchSection('personal_projects');closeSidebar();return false;"><i class="fa-solid fa-user"></i> Personal Projects</a>
+        <a href="#" class="sn-item" data-section="client_projects" onclick="switchSection('client_projects');closeSidebar();return false;"><i class="fa-solid fa-briefcase"></i> Client Projects</a>
+        <a href="#" class="sn-item" data-section="college_projects" onclick="switchSection('college_projects');closeSidebar();return false;"><i class="fa-solid fa-graduation-cap"></i> College Projects</a>
+        <a href="#" class="sn-item" data-section="activities" onclick="switchSection('activities');closeSidebar();return false;"><i class="fa-solid fa-bolt"></i> Activities</a>
+        <a href="#" class="sn-item" data-section="dailylog" onclick="switchSection('dailylog');closeSidebar();return false;"><i class="fa-solid fa-calendar-days"></i> Daily Log</a>
+        <a href="#" class="sn-item" data-section="services" onclick="switchSection('services');closeSidebar();return false;"><i class="fa-solid fa-handshake"></i> Services</a>
+        <a href="#" class="sn-item" data-section="certifications" onclick="switchSection('certifications');closeSidebar();return false;"><i class="fa-solid fa-certificate"></i> Certifications</a>
+        <a href="#" class="sn-item" data-section="project_reviews" onclick="switchSection('project_reviews');closeSidebar();return false;"><i class="fa-solid fa-star"></i> Project Reviews</a>
+        <a href="#" class="sn-item" data-section="service_reviews" onclick="switchSection('service_reviews');closeSidebar();return false;"><i class="fa-solid fa-star-half-stroke"></i> Service Reviews</a>
+        <a href="#" class="sn-item" data-section="github_stats" onclick="switchSection('github_stats');closeSidebar();return false;"><i class="fa-brands fa-github"></i> GitHub Stats</a>
+        <a href="#" class="sn-item" data-section="resume" onclick="switchSection('resume');closeSidebar();return false;"><i class="fa-solid fa-file-lines"></i> Resume</a>
+      </nav>
+      <button class="btn-logout" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="admin-main">
+
+      <!-- TOP BAR -->
+      <header class="admin-topbar">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+        <span id="sectionTitle">Dashboard</span>
+        <div class="topbar-right">
+          <span class="admin-user"><i class="fa-solid fa-circle-user"></i> <span id="adminEmail"></span></span>
+          <a href="../index.html" target="_blank" class="btn-view-site"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Site</a>
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <div class="admin-content">
+
+        <!-- DASHBOARD -->
+        <section id="sec-dashboard" class="admin-section active">
+          <h2>Welcome back! 👋</h2>
+          <p class="sec-sub">Manage your portfolio content from here.</p>
+          <div class="dash-cards">
+            <div class="dash-card" onclick="switchSection('experience')"><i class="fa-solid fa-briefcase"></i><h4>Experience</h4><p>Work timeline</p></div>
+            <div class="dash-card" onclick="switchSection('personal_projects')"><i class="fa-solid fa-user"></i><h4>Personal Projects</h4><p>Your own projects</p></div>
+            <div class="dash-card" onclick="switchSection('client_projects')"><i class="fa-solid fa-briefcase"></i><h4>Client Projects</h4><p>Client work</p></div>
+            <div class="dash-card" onclick="switchSection('college_projects')"><i class="fa-solid fa-graduation-cap"></i><h4>College Projects</h4><p>Academic projects</p></div>
+            <div class="dash-card" onclick="switchSection('activities')"><i class="fa-solid fa-bolt"></i><h4>Activities</h4><p>Activity cards</p></div>
+            <div class="dash-card" onclick="switchSection('dailylog')"><i class="fa-solid fa-calendar-days"></i><h4>Daily Log</h4><p>Day-by-day updates</p></div>
+            <div class="dash-card" onclick="switchSection('services')"><i class="fa-solid fa-handshake"></i><h4>Services</h4><p>Services offered</p></div>
+            <div class="dash-card" onclick="switchSection('certifications')"><i class="fa-solid fa-certificate"></i><h4>Certifications</h4><p>Home page certs</p></div>
+            <div class="dash-card" onclick="switchSection('project_reviews')"><i class="fa-solid fa-star"></i><h4>Project Reviews</h4><p>Projects page ratings</p></div>
+            <div class="dash-card" onclick="switchSection('service_reviews')"><i class="fa-solid fa-star-half-stroke"></i><h4>Service Reviews</h4><p>Services page ratings</p></div>
+            <div class="dash-card" onclick="switchSection('github_stats')"><i class="fa-brands fa-github"></i><h4>GitHub Stats</h4><p>Contributions & repos</p></div>
+            <div class="dash-card" onclick="switchSection('resume')"><i class="fa-solid fa-file-lines"></i><h4>Resume</h4><p>Resume details</p></div>
+          </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="sec-experience" class="admin-section">
+          <div class="sec-header">
+            <h2>Work Experience</h2>
+            <button class="btn-add" onclick="openModal('experience')"><i class="fa-solid fa-plus"></i> Add</button>
+          </div>
+          <div id="experience-list" class="item-list"></div>
+        </section>
+
+        <!-- PERSONAL PROJECTS -->
+        <section id="sec-personal_projects" class="admin-section">
+          <div class="sec-header">
+            <h2>Personal Projects</h2>
+            <button class="btn-add" onclick="openModal('personal_projects')"><i class="fa-solid fa-plus"></i> Add</button>
+          </div>
+          <div id="personal_projects-list" class="item-list"></div>
+        </section>
+
+        <!-- CLIENT PROJECTS -->
+        <section id="sec-client_projects" class="admin-section">
+          <div class="sec-header">
+            <h2>Client Projects</h2>
+            <button class="btn-add" onclick="openModal('client_projects')"><i class="fa-solid fa-plus"></i> Add</button>
+          </div>
+          <div id="client_projects-list" class="item-list"></div>
+        </section>
+
+        <!-- COLLEGE PROJECTS -->
+        <section id="sec-college_projects" class="admin-section">
+          <div class="sec-header">
+            <h2>College Projects</h2>
+            <button class="btn-add" onclick="openModal('college_projects')"><i class="fa-solid fa-plus"></i> Add</button>
+          </div>
+          <div id="college_projects-list" class="item-list"></div>
+        </section>
+
+        <!-- ACTIVITIES -->
+        <section id="sec-activities" class="admin-section">
+          <div class="sec-header">
+            <h2>Activities</h2>
+            <button class="btn-add" onclick="openModal('activities')"><i class="fa-solid fa-plus"></i> Add</button>
+          </div>
+          <div id="activities-list" class="item-list"></div>
+        </section>
+
+        <!-- DAILY LOG -->
+        <section id="sec-dailylog" class="admin-section">
+          <div class="sec-header">
+            <h2>Daily Log</h2>
+            <button class="btn-add" onclick="openModal('dailylog')"><i class="fa-solid fa-plus"></i> Add Entry</button>
+          </div>
+          <div id="dailylog-list" class="item-list"></div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="sec-services" class="admin-section">
+          <div class="sec-header">
+            <h2>Services</h2>
+            <button class="btn-add" onclick="openModal('services')"><i class="fa-solid fa-plus"></i> Add</button>
+          </div>
+          <div id="services-list" class="item-list"></div>
+        </section>
+
+        <!-- CERTIFICATIONS -->
+        <section id="sec-certifications" class="admin-section">
+          <div class="sec-header">
+            <h2>Certifications</h2>
+            <button class="btn-add" onclick="openModal('certifications')"><i class="fa-solid fa-plus"></i> Add</button>
+          </div>
+          <div id="certifications-list" class="item-list"></div>
+        </section>
+
+        <!-- PROJECT REVIEWS -->
+        <section id="sec-project_reviews" class="admin-section">
+          <div class="sec-header">
+            <h2>Project Reviews</h2>
+            <button class="btn-add" onclick="openModal('project_reviews')"><i class="fa-solid fa-plus"></i> Add</button>
+          </div>
+          <div id="project_reviews-list" class="item-list"></div>
+        </section>
+
+        <!-- SERVICE REVIEWS -->
+        <section id="sec-service_reviews" class="admin-section">
+          <div class="sec-header">
+            <h2>Service Reviews</h2>
+            <button class="btn-add" onclick="openModal('service_reviews')"><i class="fa-solid fa-plus"></i> Add</button>
+          </div>
+          <div id="service_reviews-list" class="item-list"></div>
+        </section>
+
+        <!-- GITHUB STATS -->
+        <section id="sec-github_stats" class="admin-section">
+          <div class="sec-header"><h2>GitHub Stats</h2></div>
+          <div class="resume-form-wrap">
+            <div class="res-admin-block">
+              <h3><i class="fa-brands fa-github"></i> Stats Numbers</h3>
+              <div class="form-row">
+                <div class="form-group"><label>Public Repos</label><input id="gh-repos" placeholder="43" /></div>
+                <div class="form-group"><label>Followers</label><input id="gh-followers" placeholder="2" /></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label>Contributions (Current Year)</label><input id="gh-contrib-current" placeholder="903" /></div>
+                <div class="form-group"><label>Current Year (e.g. 26)</label><input id="gh-year-current" placeholder="26" /></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label>Contributions (Previous Year)</label><input id="gh-contrib-prev" placeholder="944" /></div>
+                <div class="form-group"><label>Previous Year (e.g. 25)</label><input id="gh-year-prev" placeholder="25" /></div>
+              </div>
+            </div>
+            <div class="res-admin-block">
+              <h3><i class="fa-solid fa-link"></i> Profile Links</h3>
+              <div class="form-group"><label>ORCID URL</label><input id="gh-orcid" placeholder="https://orcid.org/..." /></div>
+              <div class="form-group"><label>Achievement URL (e.g. Quickdraw)</label><input id="gh-achievement" placeholder="https://github.com/users/.../achievements/quickdraw" /></div>
+            </div>
+            <div class="res-admin-block">
+              <h3><i class="fa-solid fa-code"></i> Top Languages</h3>
+              <p class="res-hint">Format: <strong>Language | Percent | HexColor</strong> — ek line ek language.<br>Example: <code>Java | 52 | #b07219</code></p>
+              <div class="form-group"><textarea id="gh-languages" rows="6" placeholder="Java | 52 | #b07219&#10;HTML | 22 | #e34c26&#10;CSS | 12 | #563d7c&#10;JavaScript | 10 | #f1e05a&#10;Python | 4 | #3572A5"></textarea></div>
+            </div>
+            <button class="btn-save-resume" onclick="saveGitHubStats()"><i class="fa-solid fa-floppy-disk"></i> Save GitHub Stats</button>
+          </div>
+        </section>
+
+        <!-- RESUME -->
+        <section id="sec-resume" class="admin-section">
+          <div class="sec-header"><h2>Resume — Full Editor</h2></div>
+          <div class="resume-form-wrap">
+
+            <div class="res-admin-block">
+              <h3><i class="fa-solid fa-file-pdf"></i> PDF Links</h3>
+              <div class="form-row">
+                <div class="form-group"><label>PDF View Link</label><input type="url" id="res-pdf-view" placeholder="https://..." /></div>
+                <div class="form-group"><label>PDF Download Link</label><input type="url" id="res-pdf-download" placeholder="https://drive.google.com/..." /></div>
+              </div>
+            </div>
+
+            <div class="res-admin-block">
+              <h3><i class="fa-solid fa-user"></i> Basic Info</h3>
+              <div class="form-row">
+                <div class="form-group"><label>Full Name</label><input id="res-name" placeholder="HARIOM KUMAR" /></div>
+                <div class="form-group"><label>Title / Role</label><input id="res-role" placeholder="Android &amp; Web Developer" /></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label>Phone</label><input id="res-phone" placeholder="7667110195" /></div>
+                <div class="form-group"><label>Email</label><input id="res-email" placeholder="hariomsoni0818@gmail.com" /></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label>Location</label><input id="res-location" placeholder="West Champaran, Bihar, India" /></div>
+                <div class="form-group"><label>LinkedIn URL</label><input id="res-linkedin" placeholder="https://linkedin.com/in/..." /></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label>GitHub URL</label><input id="res-github" placeholder="https://github.com/..." /></div>
+              </div>
+            </div>
+
+            <div class="res-admin-block">
+              <h3><i class="fa-solid fa-align-left"></i> Summary</h3>
+              <div class="form-group"><textarea id="res-summary" rows="4" placeholder="Professional summary..."></textarea></div>
+            </div>
+
+            <div class="res-admin-block">
+              <h3><i class="fa-solid fa-code"></i> Technical Skills</h3>
+              <p class="res-hint">Har row mein: <strong>Category | Skills</strong> — ek line mein ek row. Example: <code>Programming Languages | Java, C</code></p>
+              <div class="form-group"><textarea id="res-skills" rows="6" placeholder="Programming Languages | Java, C&#10;Mobile Development | Android, Flutter&#10;Web Development | HTML, CSS, JavaScript, React&#10;Backend &amp; Databases | Firebase, SQL, Node.js&#10;Tools | Git, GitHub, VS Code"></textarea></div>
+            </div>
+
+            <div class="res-admin-block">
+              <h3><i class="fa-solid fa-briefcase"></i> Experience</h3>
+              <p class="res-hint">Har entry alag block mein. Format: <strong>Role | Company | Date | Description | Tags(comma)</strong> — ek line ek entry.</p>
+              <div class="form-group"><textarea id="res-experience" rows="6" placeholder="Web Development Intern | Infotact Solutions | May 2025 – Jul 2025 | Developed Foodela using React, Express, MongoDB. | React,Node.js,MongoDB&#10;Frontend Intern | CodeAlpha | May 2025 | Created responsive web pages. | HTML,CSS,JavaScript"></textarea></div>
+            </div>
+
+            <div class="res-admin-block">
+              <h3><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+              <p class="res-hint">Format: <strong>Degree | Institution | Year</strong> — ek line ek entry.</p>
+              <div class="form-group"><textarea id="res-education" rows="5" placeholder="B.Tech in Computer Science &amp; Engineering | Centurion University | 2023 – 2027&#10;Intermediate of Science | Tarkeshwar Prasad Verma College | 2021 – 2023&#10;Matriculation | +2 High School Narkatiaganj | 2021"></textarea></div>
+            </div>
+
+            <div class="res-admin-block">
+              <h3><i class="fa-solid fa-diagram-project"></i> Projects</h3>
+              <p class="res-hint">Format: <strong>Title | Tag | Bullet1; Bullet2; Bullet3</strong> — ek line ek project.</p>
+              <div class="form-group"><textarea id="res-projects" rows="6" placeholder="NotesAura – Programming Guide | Android App | Built Android learning platform with 100+ tutorials.; Integrated payment gateway, 500+ learners.&#10;Vocab Doctor | Android App | Vocabulary app with offline access.; Firebase real-time sync."></textarea></div>
+            </div>
+
+            <div class="res-admin-block">
+              <h3><i class="fa-solid fa-certificate"></i> Certifications</h3>
+              <p class="res-hint">Ek line ek certification.</p>
+              <div class="form-group"><textarea id="res-certifications" rows="4" placeholder="Android Mobile Application Development — SWAYAM (MHRD)&#10;HTML &amp; CSS Training — HCL GUVI"></textarea></div>
+            </div>
+
+            <div class="res-admin-block">
+              <h3><i class="fa-solid fa-brain"></i> Soft Skills</h3>
+              <p class="res-hint">Comma separated. Example: <code>Problem Solving, Team Collaboration, Communication</code></p>
+              <div class="form-group"><input id="res-softskills" placeholder="Problem Solving, Team Collaboration, Communication, Adaptability" /></div>
+            </div>
+
+            <div class="res-admin-block">
+              <h3><i class="fa-solid fa-language"></i> Languages</h3>
+              <p class="res-hint">Format: <strong>Language | Level | Percent</strong> — ek line ek language.</p>
+              <div class="form-group"><textarea id="res-languages" rows="3" placeholder="English | Professional | 80&#10;Hindi | Native | 100&#10;Bhojpuri | Native | 100"></textarea></div>
+            </div>
+
+            <button class="btn-save-resume" onclick="saveResume()"><i class="fa-solid fa-floppy-disk"></i> Save All Resume Data</button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modal-title">Add Item</h3>
+        <button onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- FIREBASE -->
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
