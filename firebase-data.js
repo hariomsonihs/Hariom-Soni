@@ -474,22 +474,31 @@ window.closeProjectModal = (e) => {
 };
 
 // ── CARD MODAL (activities, services, dailylog) ──
-window.openCardModal = ({ icon, title, desc, meta, features, tags, type }) => {
+window.openCardModal = ({ icon, title, desc, meta, features, technologies, delivery, tags, type }) => {
   const overlay = document.getElementById("cardModalOverlay");
   if (!overlay) return;
   document.getElementById("cardModalIcon").className = icon || "fa-solid fa-bolt";
   document.getElementById("cardModalTitle").textContent = title || "";
   document.getElementById("cardModalDesc").textContent = desc || "";
   document.getElementById("cardModalMeta").innerHTML = meta
-    ? `<span style="font-size:0.78rem;color:var(--primary);font-weight:600;background:rgba(102,126,234,0.1);padding:3px 12px;border-radius:50px;display:inline-block;margin-bottom:12px;">${meta}</span>`
+    ? `<span style="font-size:0.78rem;color:var(--primary);font-weight:600;background:rgba(102,126,234,0.1);padding:3px 12px;border-radius:50px;display:inline-flex;align-items:center;gap:6px;margin-bottom:12px;">${delivery ? '<i class="fa-solid fa-clock"></i>' + delivery + ' &nbsp;•&nbsp; ' : ''}${meta}</span>`
     : "";
 
+  let extraHTML = "";
+
+  // technologies
+  if (technologies) {
+    const techList = technologies.split(',').map(t => t.trim()).filter(Boolean);
+    if (techList.length) {
+      extraHTML += `<div style="margin-bottom:16px;"><div class="proj-features-title" style="margin-bottom:8px;">Technologies</div><div style="display:flex;flex-wrap:wrap;gap:6px;">${techList.map(t => `<span style="font-size:0.72rem;padding:3px 10px;border-radius:50px;background:rgba(67,233,123,0.12);color:#43e97b;font-weight:500;">${t}</span>`).join('')}</div></div>`;
+    }
+  }
+
   // features list
-  let featHTML = "";
   if (features) {
     const list = features.split(",").map(f => f.trim()).filter(Boolean);
     if (list.length) {
-      featHTML = `<div class="proj-features-title" style="margin-top:16px;">What's Included</div>
+      extraHTML += `<div class="proj-features-title" style="margin-top:4px;">What's Included</div>
         <ul class="proj-features">${list.map(f => `<li><i class="fa-solid fa-check"></i>${f}</li>`).join("")}</ul>`;
     }
   }
@@ -521,7 +530,7 @@ window.openCardModal = ({ icon, title, desc, meta, features, tags, type }) => {
       </a></div>`;
   }
 
-  document.getElementById("cardModalExtra").innerHTML = featHTML + viewProjBtn;
+  document.getElementById("cardModalExtra").innerHTML = extraHTML + viewProjBtn;
   overlay.classList.add("active");
   document.body.style.overflow = "hidden";
 };
@@ -589,32 +598,48 @@ if (svcContainer) {
   listen("services", data => {
     const items = Object.values(data);
     if (!items.length) return;
-    svcContainer.innerHTML = items.map(d => `
+    svcContainer.innerHTML = items.map(d => {
+      const iconHtml = d.icon && (d.icon.startsWith('http') || d.icon.startsWith('/')) 
+        ? `<img src="${d.icon}" alt="" style="width:32px;height:32px;object-fit:contain;" />`
+        : `<i class="${d.icon || 'fa-solid fa-briefcase'}"></i>`;
+      const techList = d.technologies ? d.technologies.split(',').map(t => `<span class="svc-tech-tag">${t.trim()}</span>`).join('') : '';
+      const ctaLabel = d.cta_label || 'Get This';
+      return `
       <div class="service-card ${d.featured === 'true' ? 'featured' : ''} reveal visible">
         ${d.featured === 'true' ? '<div class="featured-badge">Most Popular</div>' : ''}
-        <div class="svc-icon"><i class="${d.icon || 'fa-solid fa-briefcase'}"></i></div>
-        <h4>${d.title || ""}</h4>
-        <p>${d.description || ""}</p>
-        <ul>${(d.features || "").split(",").map(f => `<li><i class="fa-solid fa-check"></i> ${f.trim()}</li>`).join("")}</ul>
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-          <div class="svc-price">${d.price || ""}</div>
+        <div class="svc-card-top">
+          <div class="svc-icon" style="${d.gradient ? 'background:' + d.gradient + ';' : ''}">${iconHtml}</div>
+          <div class="svc-card-meta">
+            ${d.category ? `<span class="svc-category-badge">${d.category}</span>` : ''}
+            ${d.delivery_time ? `<span class="svc-delivery"><i class="fa-solid fa-clock"></i> ${d.delivery_time}</span>` : ''}
+          </div>
+        </div>
+        <h4>${d.title || ''}</h4>
+        <p>${d.description || ''}</p>
+        ${techList ? `<div class="svc-tech-row">${techList}</div>` : ''}
+        <ul>${(d.features || '').split(',').map(f => `<li><i class="fa-solid fa-check"></i> ${f.trim()}</li>`).join('')}</ul>
+        <div class="svc-card-footer">
+          <div class="svc-price">${d.price ? '₹' + d.price : ''}</div>
           <div style="display:flex;gap:6px;flex-wrap:wrap;">
             <a href="#" class="card-view-btn svc-view-btn"
               data-icon="${d.icon || 'fa-solid fa-briefcase'}"
               data-title="${(d.title||'').replace(/"/g,'&quot;')}"
               data-desc="${(d.description||'').replace(/"/g,'&quot;')}"
-              data-meta="${(d.price||'').replace(/"/g,'&quot;')}"
+              data-meta="${(d.price ? '₹'+d.price : '').replace(/"/g,'&quot;')}"
               data-features="${(d.features||'').replace(/"/g,'&quot;')}"
+              data-technologies="${(d.technologies||'').replace(/"/g,'&quot;')}"
+              data-delivery="${(d.delivery_time||'').replace(/"/g,'&quot;')}"
               data-tags="${(d.tags||d.title||'').replace(/"/g,'&quot;')}">
-              <i class="fa-solid fa-eye"></i> View
+              <i class="fa-solid fa-eye"></i> Details
             </a>
             <a href="#" class="card-view-btn svc-get-btn"
               data-service="${(d.title||'').replace(/"/g,'&quot;')}">
-              <i class="fa-solid fa-handshake"></i> Get This
+              <i class="fa-solid fa-handshake"></i> ${ctaLabel}
             </a>
           </div>
         </div>
-      </div>`).join("");
+      </div>`;
+    }).join('');
 
     svcContainer.querySelectorAll(".svc-view-btn").forEach(btn => {
       btn.addEventListener("click", e => {
@@ -625,6 +650,8 @@ if (svcContainer) {
           desc: btn.dataset.desc,
           meta: btn.dataset.meta,
           features: btn.dataset.features,
+          technologies: btn.dataset.technologies,
+          delivery: btn.dataset.delivery,
           tags: btn.dataset.tags,
           type: "service"
         });

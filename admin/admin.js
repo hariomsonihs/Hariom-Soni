@@ -339,10 +339,20 @@ const forms = {
 
   services: () =>
     '<div class="form-group"><label>Service Title</label><input id="f-title" placeholder="e.g. Android Development" /></div>' +
+    '<div class="form-row">' +
+      '<div class="form-group"><label>Category</label><select id="f-category"><option value="Mobile">📱 Mobile</option><option value="Web">🌐 Web</option><option value="Backend">⚙️ Backend</option><option value="Design">🎨 Design</option><option value="Teaching">📚 Teaching</option><option value="Other">✨ Other</option></select></div>' +
+      '<div class="form-group"><label>Delivery Time</label><input id="f-delivery_time" placeholder="e.g. 7–14 days" /></div>' +
+    '</div>' +
     '<div class="form-group"><label>Description</label><textarea id="f-description" rows="3" placeholder="What this service includes..."></textarea></div>' +
     '<div class="form-group"><label>Features (comma separated)</label><input id="f-features" placeholder="Java &amp; XML, Firebase, Offline Support" /></div>' +
-    '<div class="form-group"><label>Price</label><input id="f-price" placeholder="e.g. Starting at ₹5,000" /></div>' +
+    '<div class="form-group"><label>Technologies (comma separated)</label><input id="f-technologies" placeholder="e.g. Java, Firebase, XML, Retrofit" oninput="previewTechStack(this)" /></div>' +
+    '<div class="tags-preview" id="tech-preview"></div>' +
+    '<div class="form-row">' +
+      '<div class="form-group"><label>Starting Price</label><input id="f-price" placeholder="e.g. ₹15,000" /></div>' +
+      '<div class="form-group"><label>CTA Button Label</label><input id="f-cta_label" placeholder="e.g. Get Quote, Hire Me, Order Now" /></div>' +
+    '</div>' +
     iconPickerHTML("f-icon") +
+    gradientPickerHTML("f-gradient") +
     '<div class="form-group"><label>Featured?</label><select id="f-featured"><option value="false">No</option><option value="true">Yes (Most Popular)</option></select></div>',
 
   project_reviews: () =>
@@ -387,6 +397,8 @@ window.openModal = (section, key) => {
       fill("f-name", d.name); fill("f-review", d.review); fill("f-rating", d.rating); fill("f-project", d.project);
       fill("f-status", d.status); fill("f-year", d.year); fill("f-platform", d.platform);
       fill("f-duration", d.duration); fill("f-tech_stack", d.tech_stack);
+      fill("f-delivery_time", d.delivery_time); fill("f-technologies", d.technologies);
+      fill("f-cta_label", d.cta_label); fill("f-gradient", d.gradient);
       if (d.tags) previewTags({ value: d.tags });
       if (d.tech_stack) previewTechStack({ value: d.tech_stack });
       if (d.icon)     { syncIconPreview("f-icon"); }
@@ -429,7 +441,7 @@ window.saveItem = async () => {
   if (s === "activities")        data = { title: val("f-title"), description: val("f-description"), category: val("f-category"), icon: val("f-icon") };
   if (s === "dailylog")          data = { day: val("f-day"), month: val("f-month"), title: val("f-title"), description: val("f-description"), category: val("f-category"), time: val("f-time"), date: val("f-day") + " " + val("f-month") };
   if (s === "certifications")    data = { title: val("f-title"), issuer: val("f-issuer"), date: val("f-date"), description: val("f-description"), link: val("f-link") };
-  if (s === "services")          data = { title: val("f-title"), description: val("f-description"), features: val("f-features"), price: val("f-price"), icon: val("f-icon"), featured: val("f-featured") };
+  if (s === "services")          data = { title: val("f-title"), category: val("f-category"), delivery_time: val("f-delivery_time"), description: val("f-description"), features: val("f-features"), technologies: val("f-technologies"), price: val("f-price"), cta_label: val("f-cta_label"), icon: val("f-icon"), gradient: val("f-gradient"), featured: val("f-featured") };
   if (s === "project_reviews")   data = { name: val("f-name"), role: val("f-role"), rating: val("f-rating"), review: val("f-review"), project: val("f-project") };
   if (s === "service_reviews")   data = { name: val("f-name"), role: val("f-role"), rating: val("f-rating"), review: val("f-review"), project: val("f-project") };
 

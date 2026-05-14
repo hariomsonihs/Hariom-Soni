@@ -573,6 +573,8 @@ main { padding-top: var(--nav-h); }
   padding-top: 38px;
   transition: all 0.3s;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
 .service-card.featured {
@@ -601,9 +603,67 @@ main { padding-top: var(--nav-h); }
   color: var(--primary);
   margin-bottom: 16px;
 }
+.svc-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.svc-card-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.svc-category-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+  background: rgba(102,126,234,0.15);
+  color: var(--primary);
+  border: 1px solid rgba(102,126,234,0.3);
+  white-space: nowrap;
+}
+.svc-delivery {
+  font-size: 0.7rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.svc-delivery i { color: #ffd200; font-size: 0.65rem; }
+.svc-tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+.svc-tech-tag {
+  font-size: 0.68rem;
+  padding: 2px 9px;
+  border-radius: 50px;
+  background: rgba(67,233,123,0.1);
+  color: #43e97b;
+  font-weight: 500;
+  border: 1px solid rgba(67,233,123,0.2);
+}
+.svc-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
 .service-card h4 { font-size: 1.05rem; margin-bottom: 10px; }
 .service-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 16px; text-align: justify; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.service-card ul { list-style: none; margin-bottom: 20px; }
+.service-card ul { list-style: none; margin-bottom: 0; flex: 1; }
 .service-card ul li {
   font-size: 0.83rem;
   color: var(--muted);
