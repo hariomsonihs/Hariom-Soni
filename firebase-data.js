@@ -244,6 +244,27 @@ function projIconHTML(icon, gradient) {
   }
   return { html: `<i class="${icon}"></i>`, bg: gradient || 'var(--grad)' };
 }
+
+function statusBadge(status) {
+  const map = {
+    completed: { label: 'Completed', color: '#43e97b', bg: 'rgba(67,233,123,0.12)', icon: 'fa-circle-check' },
+    ongoing:   { label: 'Ongoing',   color: '#4facfe', bg: 'rgba(79,172,254,0.12)', icon: 'fa-rotate' },
+    paused:    { label: 'Paused',    color: '#ffd200', bg: 'rgba(255,210,0,0.12)',   icon: 'fa-pause' },
+    planned:   { label: 'Planned',   color: '#a18cd1', bg: 'rgba(161,140,209,0.12)', icon: 'fa-calendar' }
+  };
+  const s = map[status] || map.completed;
+  return `<span style="font-size:0.72rem;padding:3px 10px;border-radius:50px;background:${s.bg};color:${s.color};font-weight:600;display:inline-flex;align-items:center;gap:4px;"><i class="fa-solid ${s.icon}"></i>${s.label}</span>`;
+}
+
+function projMetaRow(d) {
+  const items = [
+    d.year     ? `<span><i class="fa-solid fa-calendar-days"></i> ${d.year}</span>` : '',
+    d.platform ? `<span><i class="fa-solid fa-layer-group"></i> ${d.platform}</span>` : '',
+    d.duration ? `<span><i class="fa-solid fa-clock"></i> ${d.duration}</span>` : ''
+  ].filter(Boolean);
+  if (!items.length) return '';
+  return `<div style="font-size:0.75rem;color:var(--muted);margin-bottom:6px;display:flex;gap:10px;flex-wrap:wrap;">${items.join('')}</div>`;
+}
 const projTabsEl = document.getElementById("proj-tabs");
 if (projTabsEl) {
   // track which categories have data
@@ -289,8 +310,10 @@ if (projTabsEl) {
             <div class="project-tags">
               <span style="background:rgba(87,232,255,0.1);color:${catColor};">${catLabel}</span>
               ${(d.tags || '').split(',').map(t => `<span>${t.trim()}</span>`).join('')}
+              ${d.status ? statusBadge(d.status) : ''}
             </div>
             <h4>${d.title || ''}</h4>
+            ${projMetaRow(d)}
             <p>${d.description || ''}</p>
             <div class="project-links">
               ${d.github ? `<a href="${d.github}" target="_blank"><i class="fa-brands fa-github"></i> Code</a>` : ''}
@@ -349,8 +372,10 @@ if (projTabsEl) {
               ${(d.tags || "").split(",").map(t => `<span>${t.trim()}</span>`).join("")}
               ${d.client ? `<span style="background:rgba(245,87,108,0.12);color:#f5576c;"><i class="fa-solid fa-user-tie" style="margin-right:3px;"></i>${d.client}</span>` : ""}
               ${type === "college" && d.course ? `<span style="background:rgba(67,233,123,0.12);color:#43e97b;"><i class="fa-solid fa-graduation-cap" style="margin-right:3px;"></i>${d.course}</span>` : ""}
+              ${d.status ? statusBadge(d.status) : ''}
             </div>
             <h4>${d.title || ""}</h4>
+            ${projMetaRow(d)}
             <p>${d.description || ""}</p>
             <div class="project-links">
               ${d.github ? `<a href="${d.github}" target="_blank"><i class="fa-brands fa-github"></i> Code</a>` : ""}
@@ -389,8 +414,38 @@ window.openProjectModal = (d) => {
   }
   document.getElementById("projModalTitle").textContent = d.title || "";
   document.getElementById("projModalDesc").textContent = d.description || "";
-  document.getElementById("projModalTags").innerHTML = (d.tags || "").split(",")
-    .map(t => `<span>${t.trim()}</span>`).join("");
+  document.getElementById("projModalTags").innerHTML =
+    (d.status ? statusBadge(d.status) : '') +
+    (d.tags || "").split(",").map(t => `<span>${t.trim()}</span>`).join("");
+
+  // meta info row in modal
+  const existingMeta = document.getElementById('projModalMetaRow');
+  if (existingMeta) existingMeta.remove();
+  const metaItems = [
+    d.year     ? `<span><i class="fa-solid fa-calendar-days"></i> ${d.year}</span>` : '',
+    d.platform ? `<span><i class="fa-solid fa-layer-group"></i> ${d.platform}</span>` : '',
+    d.duration ? `<span><i class="fa-solid fa-clock"></i> ${d.duration}</span>` : '',
+    d.client   ? `<span><i class="fa-solid fa-user-tie"></i> ${d.client}</span>` : '',
+    d.course   ? `<span><i class="fa-solid fa-graduation-cap"></i> ${d.course}</span>` : ''
+  ].filter(Boolean);
+  if (metaItems.length) {
+    const metaDiv = document.createElement('div');
+    metaDiv.id = 'projModalMetaRow';
+    metaDiv.style.cssText = 'display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px;font-size:0.78rem;color:var(--muted);';
+    metaDiv.innerHTML = metaItems.join('');
+    document.getElementById("projModalDesc").insertAdjacentElement('beforebegin', metaDiv);
+  }
+
+  // tech stack
+  const existingTech = document.getElementById('projModalTechStack');
+  if (existingTech) existingTech.remove();
+  if (d.tech_stack) {
+    const techDiv = document.createElement('div');
+    techDiv.id = 'projModalTechStack';
+    techDiv.style.cssText = 'margin-bottom:14px;';
+    techDiv.innerHTML = `<div class="proj-features-title" style="margin-bottom:8px;">Tech Stack</div><div style="display:flex;flex-wrap:wrap;gap:6px;">${d.tech_stack.split(',').map(t => `<span style="font-size:0.72rem;padding:3px 10px;border-radius:50px;background:rgba(67,233,123,0.12);color:#43e97b;font-weight:500;">${t.trim()}</span>`).join('')}</div>`;
+    document.getElementById("projModalFeaturesWrap").insertAdjacentElement('beforebegin', techDiv);
+  }
 
   const features = (d.features || "").split("\n").map(f => f.trim()).filter(Boolean);
   const wrap = document.getElementById("projModalFeaturesWrap");

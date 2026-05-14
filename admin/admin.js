@@ -252,7 +252,17 @@ const forms = {
 
   personal_projects: () =>
     '<div class="form-group"><label>Project Title</label><input id="f-title" placeholder="e.g. NotesAura App" /></div>' +
-    '<div class="form-group"><label>Tags (comma separated)</label><input id="f-tags" placeholder="Java, Firebase, Android" oninput="previewTags(this)" /></div>' +
+    '<div class="form-row">' +
+      '<div class="form-group"><label>Status</label><select id="f-status"><option value="completed">✅ Completed</option><option value="ongoing">🔄 Ongoing</option><option value="paused">⏸ Paused</option><option value="planned">📋 Planned</option></select></div>' +
+      '<div class="form-group"><label>Year</label><input id="f-year" placeholder="e.g. 2024" /></div>' +
+    '</div>' +
+    '<div class="form-row">' +
+      '<div class="form-group"><label>Platform</label><input id="f-platform" placeholder="e.g. Android, Web, iOS, Cross-platform" /></div>' +
+      '<div class="form-group"><label>Duration</label><input id="f-duration" placeholder="e.g. 3 months, 2 weeks" /></div>' +
+    '</div>' +
+    '<div class="form-group"><label>Tech Stack (comma separated)</label><input id="f-tech_stack" placeholder="e.g. Java, Firebase, XML, Retrofit" oninput="previewTechStack(this)" /></div>' +
+    '<div class="tags-preview" id="tech-preview"></div>' +
+    '<div class="form-group"><label>Tags (comma separated)</label><input id="f-tags" placeholder="Android, Java, Firebase" oninput="previewTags(this)" /></div>' +
     '<div class="tags-preview" id="tags-preview"></div>' +
     '<div class="form-group"><label>Description</label><textarea id="f-description" rows="3" placeholder="Short description..."></textarea></div>' +
     '<div class="form-group"><label>Features (one per line)</label><textarea id="f-features" rows="4" placeholder="Feature 1&#10;Feature 2"></textarea></div>' +
@@ -264,6 +274,16 @@ const forms = {
   client_projects: () =>
     '<div class="form-group"><label>Project Title</label><input id="f-title" placeholder="e.g. Client E-commerce Site" /></div>' +
     '<div class="form-group"><label>Client Name (optional)</label><input id="f-client" placeholder="e.g. ABC Company" /></div>' +
+    '<div class="form-row">' +
+      '<div class="form-group"><label>Status</label><select id="f-status"><option value="completed">✅ Completed</option><option value="ongoing">🔄 Ongoing</option><option value="paused">⏸ Paused</option><option value="planned">📋 Planned</option></select></div>' +
+      '<div class="form-group"><label>Year</label><input id="f-year" placeholder="e.g. 2025" /></div>' +
+    '</div>' +
+    '<div class="form-row">' +
+      '<div class="form-group"><label>Platform</label><input id="f-platform" placeholder="e.g. Web, Android, Desktop" /></div>' +
+      '<div class="form-group"><label>Duration</label><input id="f-duration" placeholder="e.g. 1 month" /></div>' +
+    '</div>' +
+    '<div class="form-group"><label>Tech Stack (comma separated)</label><input id="f-tech_stack" placeholder="e.g. React, Node.js, MongoDB" oninput="previewTechStack(this)" /></div>' +
+    '<div class="tags-preview" id="tech-preview"></div>' +
     '<div class="form-group"><label>Tags (comma separated)</label><input id="f-tags" placeholder="React, Node.js, MongoDB" oninput="previewTags(this)" /></div>' +
     '<div class="tags-preview" id="tags-preview"></div>' +
     '<div class="form-group"><label>Description</label><textarea id="f-description" rows="3" placeholder="Short description..."></textarea></div>' +
@@ -276,6 +296,16 @@ const forms = {
   college_projects: () =>
     '<div class="form-group"><label>Project Title</label><input id="f-title" placeholder="e.g. Library Management System" /></div>' +
     '<div class="form-group"><label>Course / Subject (optional)</label><input id="f-course" placeholder="e.g. DBMS, Final Year Project" /></div>' +
+    '<div class="form-row">' +
+      '<div class="form-group"><label>Status</label><select id="f-status"><option value="completed">✅ Completed</option><option value="ongoing">🔄 Ongoing</option><option value="paused">⏸ Paused</option><option value="planned">📋 Planned</option></select></div>' +
+      '<div class="form-group"><label>Year</label><input id="f-year" placeholder="e.g. 2024" /></div>' +
+    '</div>' +
+    '<div class="form-row">' +
+      '<div class="form-group"><label>Platform</label><input id="f-platform" placeholder="e.g. Web, Android, Desktop" /></div>' +
+      '<div class="form-group"><label>Duration</label><input id="f-duration" placeholder="e.g. 2 months" /></div>' +
+    '</div>' +
+    '<div class="form-group"><label>Tech Stack (comma separated)</label><input id="f-tech_stack" placeholder="e.g. Java, MySQL, PHP" oninput="previewTechStack(this)" /></div>' +
+    '<div class="tags-preview" id="tech-preview"></div>' +
     '<div class="form-group"><label>Tags (comma separated)</label><input id="f-tags" placeholder="Java, MySQL, PHP" oninput="previewTags(this)" /></div>' +
     '<div class="tags-preview" id="tags-preview"></div>' +
     '<div class="form-group"><label>Description</label><textarea id="f-description" rows="3" placeholder="Short description..."></textarea></div>' +
@@ -355,7 +385,10 @@ window.openModal = (section, key) => {
       fill("f-price", d.price); fill("f-featured", d.featured); fill("f-link", d.link);
       fill("f-issuer", d.issuer); fill("f-client", d.client); fill("f-course", d.course);
       fill("f-name", d.name); fill("f-review", d.review); fill("f-rating", d.rating); fill("f-project", d.project);
+      fill("f-status", d.status); fill("f-year", d.year); fill("f-platform", d.platform);
+      fill("f-duration", d.duration); fill("f-tech_stack", d.tech_stack);
       if (d.tags) previewTags({ value: d.tags });
+      if (d.tech_stack) previewTechStack({ value: d.tech_stack });
       if (d.icon)     { syncIconPreview("f-icon"); }
       if (d.gradient) { syncGradPreview("f-gradient"); }
     }, { onlyOnce: true });
@@ -376,6 +409,13 @@ window.previewTags = (input) => {
     .map(t => "<span>" + t + "</span>").join("");
 };
 
+window.previewTechStack = (input) => {
+  const preview = document.getElementById("tech-preview");
+  if (!preview) return;
+  preview.innerHTML = input.value.split(",").map(t => t.trim()).filter(Boolean)
+    .map(t => "<span style='background:rgba(67,233,123,0.12);color:#43e97b;'>" + t + "</span>").join("");
+};
+
 // ── SAVE ITEM ──
 window.saveItem = async () => {
   const s = editingSection;
@@ -383,9 +423,9 @@ window.saveItem = async () => {
 
   let data = {};
   if (s === "experience")        data = { role: val("f-role"), company: val("f-company"), date: val("f-date"), description: val("f-description") };
-  if (s === "personal_projects") data = { title: val("f-title"), tags: val("f-tags"), description: val("f-description"), features: val("f-features"), github: val("f-github"), live: val("f-live"), icon: val("f-icon"), gradient: val("f-gradient") };
-  if (s === "client_projects")   data = { title: val("f-title"), client: val("f-client"), tags: val("f-tags"), description: val("f-description"), features: val("f-features"), github: val("f-github"), live: val("f-live"), icon: val("f-icon"), gradient: val("f-gradient") };
-  if (s === "college_projects")  data = { title: val("f-title"), course: val("f-course"), tags: val("f-tags"), description: val("f-description"), features: val("f-features"), github: val("f-github"), live: val("f-live"), icon: val("f-icon"), gradient: val("f-gradient") };
+  if (s === "personal_projects") data = { title: val("f-title"), tags: val("f-tags"), description: val("f-description"), features: val("f-features"), github: val("f-github"), live: val("f-live"), icon: val("f-icon"), gradient: val("f-gradient"), status: val("f-status"), year: val("f-year"), platform: val("f-platform"), duration: val("f-duration"), tech_stack: val("f-tech_stack") };
+  if (s === "client_projects")   data = { title: val("f-title"), client: val("f-client"), tags: val("f-tags"), description: val("f-description"), features: val("f-features"), github: val("f-github"), live: val("f-live"), icon: val("f-icon"), gradient: val("f-gradient"), status: val("f-status"), year: val("f-year"), platform: val("f-platform"), duration: val("f-duration"), tech_stack: val("f-tech_stack") };
+  if (s === "college_projects")  data = { title: val("f-title"), course: val("f-course"), tags: val("f-tags"), description: val("f-description"), features: val("f-features"), github: val("f-github"), live: val("f-live"), icon: val("f-icon"), gradient: val("f-gradient"), status: val("f-status"), year: val("f-year"), platform: val("f-platform"), duration: val("f-duration"), tech_stack: val("f-tech_stack") };
   if (s === "activities")        data = { title: val("f-title"), description: val("f-description"), category: val("f-category"), icon: val("f-icon") };
   if (s === "dailylog")          data = { day: val("f-day"), month: val("f-month"), title: val("f-title"), description: val("f-description"), category: val("f-category"), time: val("f-time"), date: val("f-day") + " " + val("f-month") };
   if (s === "certifications")    data = { title: val("f-title"), issuer: val("f-issuer"), date: val("f-date"), description: val("f-description"), link: val("f-link") };
